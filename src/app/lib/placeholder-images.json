@@ -1,0 +1,47 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Modern architecture luxury building at night",
+      "imageUrl": "https://picsum.photos/seed/12/1920/1080",
+      "imageHint": "modern architecture"
+    },
+    {
+      "id": "prop-1",
+      "description": "Luxury apartment with glass balcony",
+      "imageUrl": "https://picsum.photos/seed/45/800/600",
+      "imageHint": "luxury apartment"
+    },
+    {
+      "id": "prop-2",
+      "description": "Modern family house with pool",
+      "imageUrl": "https://picsum.photos/seed/78/800/600",
+      "imageHint": "modern house"
+    },
+    {
+      "id": "prop-3",
+      "description": "Penthouse view over city skyline",
+      "imageUrl": "https://picsum.photos/seed/23/800/600",
+      "imageHint": "city penthouse"
+    },
+    {
+      "id": "project-1",
+      "description": "Civil engineering bridge construction",
+      "imageUrl": "https://picsum.photos/seed/99/800/600",
+      "imageHint": "bridge construction"
+    },
+    {
+      "id": "project-2",
+      "description": "Skyscraper architectural plan and build",
+      "imageUrl": "https://picsum.photos/seed/101/800/600",
+      "imageHint": "skyscraper building"
+    },
+    {
+      "id": "agent-1",
+      "description": "Professional engineer portrait",
+      "imageUrl": "https://picsum.photos/seed/agent1/400/400",
+      "imageHint": "professional man"
+    }
+  ]
+}
