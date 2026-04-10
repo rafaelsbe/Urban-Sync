@@ -27,7 +27,7 @@ export function Header() {
             <Building2 className="w-6 h-6 text-accent-foreground" />
           </div>
           <span className="font-headline text-2xl font-bold tracking-tighter">
-            CONSTRU<span className="text-accent">PRIME</span>
+            Urbarn<span className="text-accent">Sync</span>
           </span>
         </Link>
 
