@@ -1,4 +1,4 @@
-# ConstruPrime - Engenharia & Real Estate
+# UrbanSync
 
 Este é um projeto desenvolvido com **Next.js 15**, **Tailwind CSS**, **ShadCN UI** e **Genkit AI**. Siga as instruções abaixo para rodar o projeto em sua máquina local.
 
