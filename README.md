@@ -1,5 +1,2 @@
-# Firebase Studio
-
-This is a NextJS starter in Firebase Studio.
-
-To get started, take a look at src/app/page.tsx.
+# Urban-Sync
+A UrbanSync é uma plataforma digital que conecta clientes finais a prestadores de serviços urbanos qualificados, com foco em qualidade, padronização e educação contínua.
