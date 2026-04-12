@@ -1,3 +1,4 @@
+// TAGS DE CARACTERÍSTICAS DOS IMÓVEIS NOS CARDS
 
 import Image from "next/image";
 import { Property } from "@/lib/data";

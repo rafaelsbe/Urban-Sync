@@ -1,3 +1,4 @@
+// PÁGINA PRINCIPAL / HOME DA LANDING PAGE
 
 import Image from "next/image";
 import { Header } from "@/components/Header";

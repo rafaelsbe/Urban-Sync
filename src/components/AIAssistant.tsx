@@ -1,3 +1,5 @@
+// ASSISTENTE VIRTUAL DE IA DA LANDING PAGE
+
 "use client";
 
 import { useState } from "react";

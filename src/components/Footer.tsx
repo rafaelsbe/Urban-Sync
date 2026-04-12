@@ -1,3 +1,4 @@
+// FOOTER DA LADING PAGE
 
 import Link from "next/link";
 import { Building2, Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";

@@ -1,3 +1,4 @@
+// LAYOUT RAIZ E CONFIGURAÇÕES GLOBAIS DA APLICAÇÃO
 import type {Metadata} from 'next';
 import './globals.css';
 

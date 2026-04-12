@@ -1,3 +1,4 @@
+// FLUXO DO ASSISTENTE DE IA DE FAQ DA APLICAÇÃO
 'use server';
 /**
  * @fileOverview An AI conversational assistant that answers FAQs related to civil engineering, real estate, and company services.

@@ -1,3 +1,4 @@
+// OUR PROJECTS SECTION
 
 import Image from "next/image";
 import { projects } from "@/lib/data";

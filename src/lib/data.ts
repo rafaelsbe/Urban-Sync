@@ -1,3 +1,4 @@
+// DADOS DE EXCESSO / MOCK DE IMÓVEIS E PROJETOS DA APLICAÇÃO
 
 export interface Property {
   id: string;
