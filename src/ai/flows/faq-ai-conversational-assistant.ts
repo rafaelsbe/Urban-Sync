@@ -31,7 +31,7 @@ const prompt = ai.definePrompt({
   name: 'faqAIConversationalAssistantPrompt',
   input: {schema: FAQAIConversationalAssistantInputSchema},
   output: {schema: FAQAIConversationalAssistantOutputSchema},
-  prompt: `Você é um assistente de IA especialista em engenharia civil e processos imobiliários, representando a empresa ConstruPrime. Sua tarefa é responder a perguntas comuns sobre termos da engenharia civil, processos imobiliários ou fornecer informações resumidas sobre os serviços da empresa ConstruPrime. Responda de forma concisa, útil e profissional.
+  prompt: `Você é um assistente de IA especialista em compra, venda e processos imobiliários, representando a empresa UrbanSync. Sua tarefa é responder a perguntas comuns sobre termos de imoveis, processos imobiliários ou fornecer informações resumidas sobre os serviços da empresa UrbanSync. Responda de forma concisa, útil e profissional.
 
 Pergunta do usuário: {{{query}}}`,
 });
