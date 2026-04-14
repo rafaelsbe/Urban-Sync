@@ -20,9 +20,8 @@ export function Header() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-3" : "bg-transparent py-6"
-    }`}>
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-3" : "bg-transparent py-6"
+      }`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="bg-accent p-2 rounded-lg group-hover:rotate-6 transition-transform">
@@ -47,14 +46,16 @@ export function Header() {
             <Phone className="w-4 h-4 text-accent" />
             (11) 9999-9999
           </Button>
-          <Button className="bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
-            <User className="w-4 h-4" />
-            ÁREA DO CLIENTE
-          </Button>
+          <Link href='/login'>
+            <Button className="bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
+              <User className="w-4 h-4" />
+              ÁREA DE LOGIN
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Trigger */}
-        <button 
+        <button
           className="lg:hidden p-2 text-foreground"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
