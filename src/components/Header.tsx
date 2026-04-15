@@ -47,10 +47,12 @@ export function Header() {
             <Phone className="w-4 h-4 text-accent" />
             (11) 9999-9999
           </Button>
-          <Button className="bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
-            <User className="w-4 h-4" />
-            ÁREA DO CLIENTE
-          </Button>
+          <Link href="/login">
+            <Button className="bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
+              <User className="w-4 h-4" />
+              ÁREA DO CLIENTE
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Trigger */}
