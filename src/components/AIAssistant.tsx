@@ -14,7 +14,7 @@ export function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [messages, setMessages] = useState<{ role: 'ai' | 'user', content: string }[]>([
-    { role: 'ai', content: 'Olá! Sou o assistente da ConstruPrime. Como posso ajudar você com engenharia ou imóveis hoje?' }
+    { role: 'ai', content: 'Olá! Sou o assistente da UrbanSync. Como posso ajudar você hoje?' }
   ]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,7 +43,7 @@ export function AIAssistant() {
           <CardHeader className="flex flex-row items-center justify-between py-4 bg-primary/20">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-accent" />
-              <CardTitle className="text-base font-headline">Assistente ConstruPrime</CardTitle>
+              <CardTitle className="text-base font-headline">Assistente UrbanSync</CardTitle>
             </div>
             <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-8 w-8">
               <X className="w-4 h-4" />
