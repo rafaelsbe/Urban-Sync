@@ -14,7 +14,7 @@ export function Footer() {
                 <Building2 className="w-6 h-6 text-accent-foreground" />
               </div>
               <span className="font-headline text-2xl font-bold tracking-tighter">
-                CONSTRU<span className="text-accent">PRIME</span>
+                Urbarn<span className="text-accent">Sync</span>
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
@@ -38,8 +38,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li><Link href="#" className="hover:text-accent transition-colors">Imóveis à Venda</Link></li>
               <li><Link href="#" className="hover:text-accent transition-colors">Aluguel Residencial</Link></li>
-              <li><Link href="#" className="hover:text-accent transition-colors">Nossos Projetos</Link></li>
-              <li><Link href="#" className="hover:text-accent transition-colors">Financiamento</Link></li>
+              <li><Link href="#" className="hover:text-accent transition-colors">Empresas Parceira</Link></li>
               <li><Link href="#" className="hover:text-accent transition-colors">Trabalhe Conosco</Link></li>
             </ul>
           </div>
@@ -60,21 +59,21 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-accent shrink-0" />
-                <span>Av. Paulista, 1000 - Bela Vista, São Paulo - SP</span>
+                <span>Av. Beira Mar, 1120 - 13 de Julho, Sergipe - SE</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-accent shrink-0" />
-                <span>(11) 4002-8922</span>
+                <span>(79) 99999-9999</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-accent shrink-0" />
-                <span>contato@construprime.com.br</span>
+                <span>contato@urbansync.com.br</span>
               </li>
             </ul>
           </div>
         </div>
         <div className="pt-10 border-t border-white/5 text-center text-xs text-muted-foreground">
-          <p>© 2024 ConstruPrime Engenharia e Imobiliária. Todos os direitos reservados. CRECI: 123456-J | CREA: 0987654321</p>
+          <p>© 2026 UrbanSync. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

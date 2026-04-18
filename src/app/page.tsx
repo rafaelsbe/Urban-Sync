@@ -5,20 +5,81 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SearchFilters } from "@/components/SearchFilters";
 import { PropertyCard } from "@/components/PropertyCard";
-import { ProjectSection } from "@/components/ProjectSection";
+import { CompaniesSection } from "@/components/CompaniesSection";
 import { AIAssistant } from "@/components/AIAssistant";
 import { properties } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, ChevronRight, CheckCircle2 } from "lucide-react";
+import { PriceCard } from "@/components/PriceCard";
 
 export default function Home() {
   const featuredProperties = properties.filter(p => p.featured);
 
+  const plans = [
+    {
+      id: 1,
+      name: "START",
+      purpose: "Automação inteligente de conversas via WhatsApp.",
+      includes: ["Atendimento instantâneo 24h/7", "Qualificação básica (Nome, Telefone, O que busca, Faixa de preço).", "Triagem de 'Curiosos' vs. 'Interessados'.", "Encaminhamento do lead qualificado para o WhatsApp"],
+      setupValue: 1500,
+      monthValue: 890,
+    },
+    {
+      id: 2,
+      name: "PRO",
+      purpose: "Automação completa + Organização de Processos (CRM).",
+      includes: ["Tudo do plano START", "Agendamento Automático feito pela IA", "Registro Automático no CRM: O lead entra no funil de vendas da imobiliária", "Lembretes de Visita: Disparo automático de mensagem 2h antes de visitas agendadas"],
+      setupValue: 2900,
+      monthValue: 1490,
+    },
+    {
+      id: 3,
+      name: "ELITE",
+      purpose: "Inteligência de Dados e Lançamentos (Alta Performance).",
+      includes: ["Tudo do Plano PRO", "IA Narrativa Personalizada: A IA é treinada com o 'Manual de Vendas' da imobiliária", "Relatório Mensal de BI: Análise de dados para antecipar tendências do mercado.", "Treinamento da Equipe: Consultoria mensal de 1h para ensinar uso da plataforma."],
+      setupValue: 4500,
+      monthValue: 2500,
+    }
+  ];
+
+  const partners = [
+    {
+      id: 1,
+      name: "Imobiliária Horizonte",
+      logo: "https://picsum.photos/seed/p1/600/400",
+      city: "Aracaju",
+      state: "SE",
+      miniDescription: "Especializada em imóveis residenciais e comerciais com foco em inovação digital.",
+      segment: "Imobiliária",
+      slug: 'imobiliaria-horizonte',
+    },
+    {
+      id: 2,
+      name: "Grupo Atlas",
+      logo: "https://picsum.photos/seed/p2/600/400",
+      city: "Salvador",
+      state: "BA",
+      description: "Referência em construção civil e desenvolvimento urbano.",
+      segment: "Construção",
+      slug: 'grupo-atlas',
+    },
+    {
+      id: 3,
+      name: "Nexus Realty",
+      logo: "https://picsum.photos/seed/p3/600/400",
+      city: "Recife",
+      state: "PE",
+      description: "Empresa focada em tecnologia e gestão inteligente de imóveis.",
+      segment: "Tecnologia",
+      slug: 'nexus-realty',
+    },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen font-body">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <Image
@@ -49,7 +110,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        
+
         {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
           <div className="w-1 h-12 bg-gradient-to-b from-accent to-transparent rounded-full mx-auto" />
@@ -85,7 +146,7 @@ export default function Home() {
       <section id="sobre" className="py-24 bg-card">
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
-            <Image 
+            <Image
               src="https://picsum.photos/seed/engineer-val/800/800"
               alt="Professional Engineering"
               fill
@@ -124,8 +185,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <ProjectSection />
+      {/* Companies Section */}
+      <CompaniesSection />
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
@@ -147,6 +208,22 @@ export default function Home() {
               <Button className="w-full bg-white text-black font-bold">SOLICITAR ORÇAMENTO</Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* PRICE CARDS */}
+      <section className="relative overflow-hidden bg-primary/5 py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto mb-16 max-w-3xl text-center">
+            <h2 className="mb-4 text-4xl md:text-5xl font-headline font-bold leading-tight">
+              Escolha plano de acordo com <span className="text-accent italic">sua necessidade</span>
+            </h2>
+            <p className="text-lg text-slate-400">
+              Planos pensandos para atender qualquer tipo de empresa  que queira automatizar seu atendimento via WhatsApp e aumentar suas vendas.
+            </p>
+          </div>
+
+          <PriceCard plans={plans} />
         </div>
       </section>
 
