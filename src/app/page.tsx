@@ -82,7 +82,7 @@ export default function Home() {
       </section>
 
       {/* Engineering Value Proposition */}
-      <section className="py-24 bg-card">
+      <section id="sobre" className="py-24 bg-card">
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
             <Image 

@@ -34,17 +34,16 @@ export function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
-          <Link href="#" className="hover:text-accent transition-colors">Venda</Link>
-          <Link href="#" className="hover:text-accent transition-colors">Aluguel</Link>
-          <Link href="#" className="hover:text-accent transition-colors">Engenharia</Link>
-          <Link href="#" className="hover:text-accent transition-colors">Projetos</Link>
-          <Link href="#" className="hover:text-accent transition-colors">Sobre Nós</Link>
+          <Link href="#imoveis" className="hover:text-accent transition-colors">Imóveis</Link>
+          <Link href="#parceiros" className="hover:text-accent transition-colors">Parceiros</Link>
+          <Link href="#planos" className="hover:text-accent transition-colors">Planos</Link>
+          <Link href="#sobre" className="hover:text-accent transition-colors">Sobre Nós</Link>
         </nav>
 
         <div className="hidden lg:flex items-center gap-4">
-          <Button variant="ghost" className="text-sm font-bold gap-2">
-            <Phone className="w-4 h-4 text-accent" />
-            (11) 9999-9999
+          <Button variant="ghost" className="group text-sm font-bold gap-2">
+            <Phone className="w-4 h-4 text-accent transition-colors group-hover:text-accent-foreground" />
+            (79) 99999-9999
           </Button>
           <Link href='/login'>
             <Button className="bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
