@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SearchFilters } from "@/components/SearchFilters";
 import { PropertyCard } from "@/components/PropertyCard";
-import { ProjectSection } from "@/components/ProjectSection";
+import { CompaniesSection } from "@/components/CompaniesSection";
 import { AIAssistant } from "@/components/AIAssistant";
 import { properties } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -41,6 +41,39 @@ export default function Home() {
       setupValue: 4500,
       monthValue: 2500,
     }
+  ];
+
+  const partners = [
+    {
+      id: 1,
+      name: "Imobiliária Horizonte",
+      logo: "https://picsum.photos/seed/p1/600/400",
+      city: "Aracaju",
+      state: "SE",
+      miniDescription: "Especializada em imóveis residenciais e comerciais com foco em inovação digital.",
+      segment: "Imobiliária",
+      slug: 'imobiliaria-horizonte',
+    },
+    {
+      id: 2,
+      name: "Grupo Atlas",
+      logo: "https://picsum.photos/seed/p2/600/400",
+      city: "Salvador",
+      state: "BA",
+      description: "Referência em construção civil e desenvolvimento urbano.",
+      segment: "Construção",
+      slug: 'grupo-atlas',
+    },
+    {
+      id: 3,
+      name: "Nexus Realty",
+      logo: "https://picsum.photos/seed/p3/600/400",
+      city: "Recife",
+      state: "PE",
+      description: "Empresa focada em tecnologia e gestão inteligente de imóveis.",
+      segment: "Tecnologia",
+      slug: 'nexus-realty',
+    },
   ];
 
   return (
@@ -152,8 +185,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <ProjectSection />
+      {/* Companies Section */}
+      <CompaniesSection />
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
@@ -193,7 +226,6 @@ export default function Home() {
           <PriceCard plans={plans} />
         </div>
       </section>
-
 
       <Footer />
       <AIAssistant />
