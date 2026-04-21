@@ -34,7 +34,7 @@ export default function CompaniesPage() {
             </div>
 
             {/* BOTÃO */}
-            <Link href="/">
+            <Link href="/#empresas">
               <Button
                 variant="outline"
                 className="w-fit border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"

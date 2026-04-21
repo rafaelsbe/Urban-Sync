@@ -2,6 +2,7 @@
 
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Phone, User, Building2 } from "lucide-react";
@@ -24,8 +25,9 @@ export function Header() {
       }`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="bg-accent p-2 rounded-lg group-hover:rotate-6 transition-transform">
-            <Building2 className="w-6 h-6 text-accent-foreground" />
+          <div className="group-hover:rotate-6 transition-transform">
+            <img src="/favicon.ico" alt="Logo" width={30} height={30} />
+            {/* <Building2 className="w-6 h-6 text-accent-foreground" /> */}
           </div>
           <span className="font-headline text-2xl font-bold tracking-tighter">
             Urbarn<span className="text-accent">Sync</span>
@@ -35,9 +37,9 @@ export function Header() {
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
           <Link href="#imoveis" className="hover:text-accent transition-colors">Imóveis</Link>
-          <Link href="#parceiros" className="hover:text-accent transition-colors">Parceiros</Link>
-          <Link href="#planos" className="hover:text-accent transition-colors">Planos</Link>
           <Link href="#sobre" className="hover:text-accent transition-colors">Sobre Nós</Link>
+          <Link href="#empresas" className="hover:text-accent transition-colors">Parceiros</Link>
+          <Link href="#planos" className="hover:text-accent transition-colors">Planos</Link>
         </nav>
 
         <div className="hidden lg:flex items-center gap-4">

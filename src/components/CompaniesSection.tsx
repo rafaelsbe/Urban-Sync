@@ -5,9 +5,13 @@ import { ArrowRight, MapPin } from "lucide-react"
 import { companies } from "@/lib/data"
 import Link from "next/link";
 
-export function CompaniesSection() {
+type CompaniesSectionProps = {
+  id: string
+};
+
+export function CompaniesSection({ id }: CompaniesSectionProps) {
   return (
-    <section className="bg-primary/5 py-24">
+    <section id={id} className="bg-primary/5 py-24">
       <div className="container mx-auto px-4">
         <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-2xl">

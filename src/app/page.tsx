@@ -43,39 +43,6 @@ export default function Home() {
     }
   ];
 
-  const partners = [
-    {
-      id: 1,
-      name: "Imobiliária Horizonte",
-      logo: "https://picsum.photos/seed/p1/600/400",
-      city: "Aracaju",
-      state: "SE",
-      miniDescription: "Especializada em imóveis residenciais e comerciais com foco em inovação digital.",
-      segment: "Imobiliária",
-      slug: 'imobiliaria-horizonte',
-    },
-    {
-      id: 2,
-      name: "Grupo Atlas",
-      logo: "https://picsum.photos/seed/p2/600/400",
-      city: "Salvador",
-      state: "BA",
-      description: "Referência em construção civil e desenvolvimento urbano.",
-      segment: "Construção",
-      slug: 'grupo-atlas',
-    },
-    {
-      id: 3,
-      name: "Nexus Realty",
-      logo: "https://picsum.photos/seed/p3/600/400",
-      city: "Recife",
-      state: "PE",
-      description: "Empresa focada em tecnologia e gestão inteligente de imóveis.",
-      segment: "Tecnologia",
-      slug: 'nexus-realty',
-    },
-  ];
-
   return (
     <div className="flex flex-col min-h-screen font-body">
       <Header />
@@ -121,7 +88,7 @@ export default function Home() {
       <SearchFilters />
 
       {/* Featured Properties */}
-      <section className="py-24 container mx-auto px-4">
+      <section id="imoveis" className="py-24 container mx-auto px-4">
         <div className="flex items-center justify-between mb-12">
           <div className="space-y-2">
             <h2 className="text-4xl font-headline font-bold">Imóveis em <span className="text-accent">Destaque</span></h2>
@@ -186,33 +153,10 @@ export default function Home() {
       </section>
 
       {/* Companies Section */}
-      <CompaniesSection />
-
-      {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary opacity-20" />
-        <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
-          <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8 italic">Pronto para dar o próximo passo?</h2>
-          <p className="text-xl text-muted-foreground mb-12">
-            Seja para comprar, vender ou construir, nossa equipe está pronta para oferecer a melhor consultoria técnica do mercado.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <div className="bg-card p-8 rounded-2xl border border-white/5 flex flex-col items-center gap-4 flex-1">
-              <h3 className="text-2xl font-bold">Quero um Imóvel</h3>
-              <p className="text-sm text-muted-foreground text-center">Fale com nossos consultores especialistas em alto padrão.</p>
-              <Button className="w-full bg-accent text-accent-foreground font-bold">VER CATÁLOGO</Button>
-            </div>
-            <div className="bg-card p-8 rounded-2xl border border-white/5 flex flex-col items-center gap-4 flex-1">
-              <h3 className="text-2xl font-bold">Quero Construir</h3>
-              <p className="text-sm text-muted-foreground text-center">Inicie seu projeto com nossos engenheiros seniores.</p>
-              <Button className="w-full bg-white text-black font-bold">SOLICITAR ORÇAMENTO</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CompaniesSection id="empresas" />
 
       {/* PRICE CARDS */}
-      <section className="relative overflow-hidden bg-primary/5 py-24">
+      <section id="planos" className="relative overflow-hidden bg-card py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <h2 className="mb-4 text-4xl md:text-5xl font-headline font-bold leading-tight">
@@ -224,6 +168,29 @@ export default function Home() {
           </div>
 
           <PriceCard plans={plans} />
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-background py-24 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20" />
+        <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
+          <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8 italic">Pronto para dar o próximo passo?</h2>
+          <p className="text-xl text-muted-foreground mb-12">
+            Seja para comprar, vender ou construir, nossa equipe está pronta para oferecer a melhor consultoria técnica do mercado.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <div className="bg-card p-8 rounded-2xl border border-white/5 flex flex-col items-center gap-4 flex-1">
+              <h3 className="text-2xl font-bold">Quero um Imóvel</h3>
+              <p className="text-sm text-muted-foreground text-center">Fale com nossos consultores especialistas.</p>
+              <Button className="w-full bg-accent text-accent-foreground font-bold">VER CATÁLOGO</Button>
+            </div>
+            <div className="bg-card p-8 rounded-2xl border border-white/5 flex flex-col items-center gap-4 flex-1">
+              <h3 className="text-2xl font-bold">Quero Construir</h3>
+              <p className="text-sm text-muted-foreground text-center">Inicie seu projeto com nossos engenheiros seniores.</p>
+              <Button className="w-full bg-white text-black font-bold">SOLICITAR ORÇAMENTO</Button>
+            </div>
+          </div>
         </div>
       </section>
 

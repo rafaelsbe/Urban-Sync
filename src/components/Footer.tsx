@@ -10,8 +10,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="bg-accent p-2 rounded-lg">
-                <Building2 className="w-6 h-6 text-accent-foreground" />
+              <div>
+                <img src="/favicon.ico" alt="Logo" width={30} height={30} />
               </div>
               <span className="font-headline text-2xl font-bold tracking-tighter">
                 Urbarn<span className="text-accent">Sync</span>
