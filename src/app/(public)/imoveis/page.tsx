@@ -1,33 +1,105 @@
+import Image from "next/image"
+import Link from "next/link"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { MapPin, ArrowRight, ArrowLeft } from "lucide-react"
+import { companies1 } from "@/lib/data"
 
-// TAGS DE CARACTERÍSTICAS DOS IMÓVEIS NOS CARDS
-import { PlaceHolderImages } from "@/lib/placeholder-images";
-import Image from "next/image";
-import { properties, Property } from "@/lib/data";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Bed, Bath, Maximize, MapPin } from "lucide-react";
-import { PropertyCard } from "@/components/PropertyCard";
-import { Metadata } from "next";
-import { properties as mockProperties } from "@/app/(public)/imoveis/lib/data"; 
-
-
-
-
-
-
-export default function ImoveisPage() {
+export default function Companies1Page() {
   return (
-    <div className="container py-10">    
-      <h1 className="text-3xl font-bold mb-8">Imóveis para alugar e vender</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {properties.map(property => (
-          <PropertyCard key={property.id} property={property} />
-        ))}
-      </div>
-    </div>
+    <main className="min-h-screen bg-background">
+      <section className="bg-primary/5 py-24">
+        <div className="container mx-auto px-4">
+          <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 
-                    
-    
-  );
+            {/* TEXTO */}
+            <div className="max-w-3xl text-center md:text-left">
+              <Badge
+                variant="outline"
+                className="mb-4 border-accent/30 px-4 py-1 font-bold uppercase tracking-widest text-accent"
+              >
+                imoveis
+              </Badge>
+
+              <h1 className="mb-6 text-4xl font-headline font-bold md:text-5xl">
+                Conheça todas as nossos{" "}
+                <span className="italic text-accent">imoveis</span>
+              </h1>
+
+              <p className="text-lg text-muted-foreground">
+                Explore os imoveis que confiam na nossa tecnologia para transformar atendimento, vendas e relacionamento com clientes.  
+              </p>
+            </div>
+
+            {/* BOTÃO */}
+            <Link href="/#imoveis">
+              <Button
+                variant="outline"
+                className="w-fit border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Voltar
+              </Button>
+            </Link>
+
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {companies1.map((company1) => (
+              <div
+                key={company1.id}
+                className="group overflow-hidden rounded-3xl border border-white/5 bg-secondary/20 transition-all duration-300 hover:-translate-y-1 hover:border-accent/30"
+              >
+                <div className="flex h-full flex-col">
+                  <div className="relative h-56 overflow-hidden">
+                    <Image
+                      src={company1.logo}
+                      alt={company1.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+
+                    <div className="absolute left-4 top-4">
+                      <Badge className="border-none bg-accent/90 font-bold text-accent-foreground">
+                        {company1.segment}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-1 flex-col justify-between p-8">
+                    <div>
+                      <div className="mb-4 flex items-center gap-2 text-sm font-medium text-muted-foreground">
+                        <MapPin className="h-4 w-4 text-accent" />
+                        <span>
+                          {company1.city}/{company1.state}
+                        </span>
+                      </div>
+
+                      <h2 className="mb-4 text-2xl font-headline font-bold">
+                        {company1.name}
+                      </h2>
+
+                      <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                        {company1.description}
+                      </p>
+                    </div>
+
+                    <Link href={`/imoveis/${company1.slug}`}>
+                      <Button
+                        variant="outline"
+                        className="group/btn w-fit border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                      >
+                        Ver imoveis
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  )
 }
-    

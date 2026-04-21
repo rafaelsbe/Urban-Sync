@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, ChevronRight, CheckCircle2 } from "lucide-react";
 import { PriceCard } from "@/components/PriceCard";
+import { CompaniesSection1 } from "@/components/ui/companiesSection1";
 
 export default function Home() {
   const featuredProperties = properties.filter(p => p.featured);
@@ -86,28 +87,17 @@ export default function Home() {
 
       {/* Search Filters */}
       <SearchFilters />
-
+     
       {/* Featured Properties */}
       <section id="imoveis" className="py-24 container mx-auto px-4">
-        <div className="flex items-center justify-between mb-12">
-          <div className="space-y-2">
-            <h2 className="text-4xl font-headline font-bold">Imóveis em <span className="text-accent">Destaque</span></h2>
-            <p className="text-muted-foreground">Seleção exclusiva de propriedades de alto padrão.</p>
-          </div>
-          <Button variant="ghost" className="hidden md:flex items-center gap-2 group text-accent font-bold">
-            VER TODA A LISTAGEM
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
-        </div>
+        
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProperties.map(property => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
-          {/* Add more properties or placeholders */}
-          <PropertyCard property={properties[2]} />
-        </div>
+      
+
+ <CompaniesSection1 id="imoveis" />
+        
       </section>
+     
 
       {/* Engineering Value Proposition */}
       <section id="sobre" className="py-24 bg-card">
