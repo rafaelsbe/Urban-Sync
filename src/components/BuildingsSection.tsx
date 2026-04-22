@@ -2,25 +2,25 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, MapPin } from "lucide-react"
-import { companies1 } from "@/lib/data"
+import { buildings } from "@/lib/data"
 import Link from "next/link";
 
-type CompaniesSectionProps = {
+type BuildingsSectionProps = {
   id: string
 };
 
-export function CompaniesSection1({ id }: CompaniesSectionProps) {
+export function BuildingsSection({ id }: BuildingsSectionProps) {
   return (
-    <section id={id} className="bg-primary/5 py-24">
-      <div className="container mx-auto px-4">
+    <section id={id} className="py-24">
+      <div className="container mx-auto px-4 w-full">
         <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-2xl">
             <Badge className="mb-4 border-accent/30 px-4 py-1 font-bold uppercase tracking-widest text-accent" variant="outline">
-              imóveis 
+              Imóveis 
             </Badge>
 
             <h2 className="mb-6 text-4xl font-headline font-bold md:text-5xl">
-              imoveis <span className="italic text-accent">para todos os publicos</span>
+              Imóveis <span className="italic text-accent">para todos os publicos</span>
             </h2>
 
             <p className="text-lg text-muted-foreground">
@@ -29,7 +29,7 @@ export function CompaniesSection1({ id }: CompaniesSectionProps) {
           </div>
           <Link href={'/imoveis'}>
             <Button variant="ghost" className="hidden md:flex items-center gap-2 group text-accent font-bold">
-              VER IMOVEIS
+              VER IMÓVEIS
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
@@ -37,9 +37,9 @@ export function CompaniesSection1({ id }: CompaniesSectionProps) {
 
         {/* GRID ALTERADO PARA 3 COLUNAS */}
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
-          {companies1.map((company1) => (
+          {buildings.map((building) => (
             <div
-              key={company1.id}
+              key={building.id}
               className="group relative overflow-hidden rounded-3xl border border-white/5 bg-secondary/20"
             >
               <div className="flex h-full flex-col">
@@ -47,17 +47,11 @@ export function CompaniesSection1({ id }: CompaniesSectionProps) {
                 {/* LOGO */}
                 <div className="relative h-56 overflow-hidden">
                   <Image
-                    src={company1.logo}
-                    alt={company1.name}
+                    src={building.coverImage}
+                    alt={building.name}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-
-                  <div className="absolute left-4 top-4">
-                    <Badge className="border-none bg-accent/90 font-bold text-accent-foreground">
-                      {company1.segment}
-                    </Badge>
-                  </div>
                 </div>
 
                 {/* INFO */}
@@ -66,19 +60,19 @@ export function CompaniesSection1({ id }: CompaniesSectionProps) {
                     <div className="mb-4 flex items-center gap-4 text-sm font-medium text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <MapPin className="h-4 w-4 text-accent" />
-                        {company1.city}/{company1.state}
+                        {building.city}/{building.state}
                       </div>
                     </div>
 
                     <h3 className="mb-4 text-2xl font-headline font-bold">
-                      {company1.name}
+                      {building.name}
                     </h3>
 
                     <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                      {company1.miniDescription}
+                      {building.miniDescription}
                     </p>
                   </div>
-                  <Link href={`/imoveis/${company1.slug}`}>
+                  <Link href={`/imoveis/${building.slug}`}>
                     <Button
                       variant="outline"
                       className="w-fit border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"

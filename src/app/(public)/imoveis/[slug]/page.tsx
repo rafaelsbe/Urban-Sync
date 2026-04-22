@@ -5,7 +5,7 @@ import {
   Badge,
 } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { companies1 } from "@/lib/data"
+import { buildings } from "@/lib/data"
 import {
   MapPin,
   Instagram,
@@ -21,9 +21,9 @@ type CompanyPageProps = {
 }
 
 export default function CompanyPage({ params }: CompanyPageProps) {
-  const company1 = companies1.find((item) => item.slug === params.slug)
+  const building = buildings.find((item) => item.slug === params.slug)
 
-  if (!company1) {
+  if (!building) {
     notFound()
   }
 
@@ -47,18 +47,12 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             {/* Imagem */}
             <div className="relative min-h-[320px] overflow-hidden rounded-3xl border border-white/5 bg-secondary/20 md:min-h-[500px]">
               <Image
-                src={company1.coverImage}
-                alt={company1.name}
+                src={building.coverImage}
+                alt={building.name}
                 fill
                 className="object-cover"
                 priority
               />
-
-              <div className="absolute left-5 top-5">
-                <Badge className="border-none bg-accent/90 font-bold text-accent-foreground">
-                  {company1.segment}
-                </Badge>
-              </div>
             </div>
 
             {/* Informações */}
@@ -66,27 +60,27 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               <div className="mb-4 flex items-center gap-2 text-sm font-medium text-muted-foreground">
                 <MapPin className="h-4 w-4 text-accent" />
                 <span>
-                  {company1.city}/{company1.state}
+                  {building.city}/{building.state}
                 </span>
               </div>
 
               <h1 className="mb-4 text-4xl font-headline font-bold md:text-5xl">
-                {company1.name}
+                {building.name}
               </h1>
 
               <p className="mb-6 text-base leading-relaxed text-muted-foreground">
-                {company1.description}
+                {building.description}
               </p>
 
               <div className="mb-8">
                 <h2 className="mb-3 text-xl font-bold">História da empresa</h2>
                 <p className="text-sm leading-7 text-muted-foreground md:text-base">
-                  {company1.history}
+                  {building.history}
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <Link href={company1.social.instagram} target="_blank">
+                <Link href={building.social.instagram} target="_blank">
                   <Button
                     variant="outline"
                     className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
@@ -96,7 +90,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                   </Button>
                 </Link>
 
-                <Link href={company1.social.linkedin} target="_blank">
+                <Link href={building.social.linkedin} target="_blank">
                   <Button
                     variant="outline"
                     className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
@@ -106,7 +100,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                   </Button>
                 </Link>
 
-                <Link href={company1.social.facebook} target="_blank">
+                <Link href={building.social.facebook} target="_blank">
                   <Button
                     variant="outline"
                     className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
@@ -134,18 +128,18 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </Badge>
 
               <h2 className="text-3xl font-headline font-bold md:text-4xl">
-                Conheça os imóveis da <span className="text-accent">{company1.name}</span>
+                Conheça os imóveis da <span className="text-accent">{building.name}</span>
               </h2>
             </div>
           </div>
 
-          {company1.properties.length === 0 ? (
+          {building.properties.length === 0 ? (
             <div className="rounded-3xl border border-white/5 bg-secondary/20 p-10 text-center text-muted-foreground">
               Nenhum imóvel cadastrado para esta empresa no momento.
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-              {company1.properties.map((property) => (
+              {building.properties.map((property) => (
                 <div
                   key={property.id}
                   className="group overflow-hidden rounded-3xl border border-white/5 bg-secondary/20 transition-all duration-300 hover:-translate-y-1 hover:border-accent/30"

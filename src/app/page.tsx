@@ -1,21 +1,19 @@
 // PÁGINA PRINCIPAL / HOME DA LANDING PAGE
 
 import Image from "next/image";
+import Link  from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SearchFilters } from "@/components/SearchFilters";
-import { PropertyCard } from "@/components/PropertyCard";
 import { CompaniesSection } from "@/components/CompaniesSection";
 import { AIAssistant } from "@/components/AIAssistant";
-import { properties } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, ChevronRight, CheckCircle2 } from "lucide-react";
+import { ChevronRight, CheckCircle2 } from "lucide-react";
 import { PriceCard } from "@/components/PriceCard";
-import { CompaniesSection1 } from "@/components/ui/companiesSection1";
+import { BuildingsSection } from "@/components/BuildingsSection";
 
 export default function Home() {
-  const featuredProperties = properties.filter(p => p.featured);
 
   const plans = [
     {
@@ -69,10 +67,12 @@ export default function Home() {
             Especialistas em projetos de alta complexidade e consultoria imobiliária personalizada. Encontre seu próximo investimento ou construa seu legado conosco.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-accent hover:bg-accent/80 text-accent-foreground font-bold h-14 px-10 text-lg rounded-full">
-              VER IMÓVEIS
-              <ChevronRight className="ml-2 w-5 h-5" />
-            </Button>
+            <Link href="/imoveis">
+              <Button size="lg" className="bg-accent hover:bg-accent/80 text-accent-foreground font-bold h-14 px-10 text-lg rounded-full">
+                VER IMÓVEIS
+                <ChevronRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
             <Button size="lg" variant="outline" className="border-white/20 hover:bg-white/10 font-bold h-14 px-10 text-lg rounded-full">
               FALAR COM ENGENHEIRO
             </Button>
@@ -87,17 +87,16 @@ export default function Home() {
 
       {/* Search Filters */}
       <SearchFilters />
-     
+
       {/* Featured Properties */}
       <section id="imoveis" className="py-24 container mx-auto px-4">
-        
 
-      
 
- <CompaniesSection1 id="imoveis" />
-        
+
+        <BuildingsSection id="imoveis" />
+
       </section>
-     
+
 
       {/* Engineering Value Proposition */}
       <section id="sobre" className="py-24 bg-card">

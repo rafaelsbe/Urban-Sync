@@ -78,24 +78,24 @@ export default function EmpresaLoginPage() {
 
                         {/* Help link */}
                         <div className="mt-10 space-y-1">
-                            <p className="text-white">Não sabe o domínio o login da sua empresa?</p>
+                            <p className="text-white">Esqueceu seu login e senha?</p>
                             <a
                                 href="#"
                                 className="font-semibold text-accent underline underline-offset-2 hover:opacity-80 transition-opacity duration-300 ease"
                             >
-                                Fale com o administrador
+                                Recupere aqui
                             </a>
                         </div>
 
                         {/* CTA options */}
                         <div className="mt-[10rem] flex flex-col items-center gap-2 text-center">
                             <p className="text-center text-sm text-white/90">
-                                Você quer alugar ou comprar imóveis? <br />
+                                Você quer administrar seus imóveis? <br />
                             </p>
                             <Link href="/login/cliente" className="block">
                                 <Button
                                     className="w-[220px] bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
-                                    Vá para a área de Empresas
+                                    Área de Empresas
                                     <ArrowUpRight />
                                 </Button>
                             </Link>
@@ -121,21 +121,21 @@ export default function EmpresaLoginPage() {
                     <div className="relative z-10 flex h-full flex-col items-center justify-center px-8 text-center">
                         <div className="mb-10">
                             <h3 className="text-5xl font-bold tracking-tight text-white xl:text-6xl">
-                                <span className="text-accent">20% off</span> no
+                                <span className="text-accent">10% off</span> na
                             </h3>
                         </div>
 
                         <div className="space-y-2">
                             <h2 className="text-6xl font-extrabold uppercase leading-[0.95] tracking-tight text-white xl:text-8xl">
-                                Plano Urban Sync
+                                Primeira compra
                                 <br />
-                                ELITE
+                                pela Urban
                             </h2>
                         </div>
 
                         <Button
                             className="mt-10 w-[520px] rounded-xl bg-emerald-400 p-7 text-xl font-medium text-slate-950 shadow-lg hover:bg-emerald-500">
-                            Garanta agora com condições exclusivas!
+                            Garanta seu imóvel com condições exclusivas!
                         </Button>
                     </div>
                 </section>

@@ -1,7 +1,7 @@
 // FOOTER DA LADING PAGE
 
 import Link from "next/link";
-import { Building2, Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
   return (
@@ -9,7 +9,7 @@ export function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href="#" className="flex items-center gap-2 group">
               <div>
                 <img src="/favicon.ico" alt="Logo" width={30} height={30} />
               </div>
@@ -36,10 +36,10 @@ export function Footer() {
           <div>
             <h4 className="font-headline font-bold text-lg mb-6 border-l-4 border-accent pl-3">Links Úteis</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
-              <li><Link href="#" className="hover:text-accent transition-colors">Imóveis à Venda</Link></li>
-              <li><Link href="#" className="hover:text-accent transition-colors">Aluguel Residencial</Link></li>
-              <li><Link href="#" className="hover:text-accent transition-colors">Empresas Parceira</Link></li>
-              <li><Link href="#" className="hover:text-accent transition-colors">Trabalhe Conosco</Link></li>
+              <li><Link href="/#imoveis" className="hover:text-accent transition-colors">Imóveis à Venda</Link></li>
+              <li><Link href="/#imoveis" className="hover:text-accent transition-colors">Aluguel Residencial</Link></li>
+              <li><Link href="/#empresas" className="hover:text-accent transition-colors">Empresas Parceira</Link></li>
+              <li><Link href="/#planos" className="hover:text-accent transition-colors">Planos e Pagamentos</Link></li>
             </ul>
           </div>
 
