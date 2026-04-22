@@ -5,6 +5,7 @@ import { Building2, ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Footer } from "@/components/Footer"
+import { GoogleSignInButton } from "@/components/GoogleSignInButton"
 import path from "path"
 
 export default function EmpresaLoginPage() {
@@ -78,6 +79,18 @@ export default function EmpresaLoginPage() {
                                 Entrar
                             </Button>
                         </form>
+
+                        {/* Divider */}
+                        <div className="mt-8 flex items-center gap-4">
+                            <div className="flex-1 h-[1px] bg-white/10"></div>
+                            <span className="text-white/60 text-sm">Ou</span>
+                            <div className="flex-1 h-[1px] bg-white/10"></div>
+                        </div>
+
+                        {/* Google Sign In */}
+                        <div className="mt-6">
+                            <GoogleSignInButton />
+                        </div>
 
                         {/* Help link */}
                         <div className="mt-10 space-y-1">
