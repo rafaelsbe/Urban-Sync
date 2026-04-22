@@ -4,11 +4,10 @@ import { FormEvent, useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ArrowRight, Building2, ShieldCheck } from "lucide-react"
+import { Building2, ShieldCheck } from "lucide-react"
 
 import { hasDashboardSession, setDashboardSession } from "@/app/dashboard/helpers/auth"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 
 export default function DashboardLoginPage() {
@@ -93,10 +92,6 @@ export default function DashboardLoginPage() {
                 {isLoading ? "Entrando..." : "Entrar no dashboard"}
               </Button>
             </form>
-
-            <div className="mt-8 rounded-2xl border border-white/10 bg-card/60 p-4 text-sm text-muted-foreground">
-              Este login e um gate visual do MVP frontend. A autenticacao real pode ser conectada depois sem mudar a estrutura das rotas.
-            </div>
           </div>
         </section>
 
@@ -110,17 +105,7 @@ export default function DashboardLoginPage() {
           />
           <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(18,21,29,0.72),rgba(40,55,102,0.48),rgba(84,180,206,0.18))]" />
 
-          <div className="relative z-10 flex h-full flex-col justify-between p-10">
-            <Card className="ml-auto w-full max-w-sm border-white/10 bg-background/45 backdrop-blur-xl">
-              <CardContent className="p-6">
-                <div className="mb-2 text-sm uppercase tracking-[0.2em] text-accent">MVP interno</div>
-                <div className="text-2xl font-bold text-white">Controle central da operacao</div>
-                <p className="mt-3 text-sm text-white/70">
-                  Cadastro de empresas, leitura de faturamento e acompanhamento de vendas em uma unica area.
-                </p>
-              </CardContent>
-            </Card>
-
+          <div className="relative flex h-full items-end p-10">
             <div className="max-w-2xl">
               <div className="mb-4 text-sm uppercase tracking-[0.2em] text-accent">UrbanSync Admin</div>
               <h2 className="text-5xl font-extrabold uppercase leading-[0.95] tracking-tight text-white xl:text-7xl">
@@ -131,13 +116,6 @@ export default function DashboardLoginPage() {
               <p className="mt-6 max-w-xl text-lg text-white/80">
                 A base para a equipe acompanhar crescimento, vendas, implantacoes e expansao do negocio.
               </p>
-
-              <Link href="/dashboard/home">
-                <Button className="mt-8 h-12 rounded-xl bg-emerald-400 px-8 text-lg font-bold text-slate-950 hover:bg-emerald-500">
-                  Ver demonstracao
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
             </div>
           </div>
         </section>

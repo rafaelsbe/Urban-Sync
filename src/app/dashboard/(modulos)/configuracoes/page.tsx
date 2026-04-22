@@ -1,5 +1,5 @@
-import { BellRing, Globe, LockKeyhole, Palette } from "lucide-react"
-
+// import { BellRing, Globe, LockKeyhole, Palette } from "lucide-react"
+import { Globe } from "lucide-react"
 import { SectionHeader } from "@/app/dashboard/components/ui/section-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -20,7 +20,7 @@ export default function DashboardSettingsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl text-white">
               <Globe className="h-5 w-5 text-accent" />
-              Dados da operacao
+              Dados da empresa
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -30,7 +30,7 @@ export default function DashboardSettingsPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="operation-email">Email principal</Label>
-              <Input id="operation-email" defaultValue="operacao@urbansync.com.br" className="border-white/10 bg-background/60" />
+              <Input id="operation-email" defaultValue="admin@urbansync.com.br" className="border-white/10 bg-background/60" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="support-phone">Telefone de suporte</Label>
@@ -39,44 +39,6 @@ export default function DashboardSettingsPage() {
             <Button className="bg-accent font-semibold text-accent-foreground hover:bg-accent/80">
               Salvar alteracoes
             </Button>
-          </CardContent>
-        </Card>
-
-        <Card className="border-white/10 bg-card/80">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-xl text-white">
-              <BellRing className="h-5 w-5 text-accent" />
-              Preferencias
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            {[
-              {
-                icon: LockKeyhole,
-                title: "Controle de acesso",
-                description: "Separar perfis entre admin geral, comercial e implantacao.",
-              },
-              {
-                icon: Palette,
-                title: "Padrao visual",
-                description: "Manter o painel alinhado a paleta atual da marca UrbanSync.",
-              },
-              {
-                icon: BellRing,
-                title: "Alertas operacionais",
-                description: "Preparar avisos para inadimplencia, empresas em atencao e leads abaixo da meta.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="rounded-2xl border border-white/10 bg-background/40 p-4">
-                <div className="mb-2 flex items-center gap-3">
-                  <div className="rounded-lg bg-accent/15 p-2">
-                    <item.icon className="h-4 w-4 text-accent" />
-                  </div>
-                  <div className="font-semibold text-white">{item.title}</div>
-                </div>
-                <p className="text-sm text-muted-foreground">{item.description}</p>
-              </div>
-            ))}
           </CardContent>
         </Card>
       </div>

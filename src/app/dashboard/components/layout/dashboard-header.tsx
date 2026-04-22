@@ -72,10 +72,6 @@ export function DashboardHeader() {
           </div>
 
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="border border-white/10 bg-card hover:bg-card/80">
-              <Bell className="h-4 w-4" />
-            </Button>
-
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="h-10 gap-3 rounded-full border border-white/10 bg-card px-2 hover:bg-card/80">

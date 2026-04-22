@@ -105,16 +105,6 @@ export function DashboardSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-
-      <SidebarFooter className="px-4 pb-4">
-        <div className="rounded-2xl border border-white/10 bg-card p-4 group-data-[collapsible=icon]:hidden">
-          <div className="mb-2 text-sm font-semibold">MVP interno</div>
-          <div className="mb-3 text-xs text-muted-foreground">
-            Painel inicial com dados mockados para operacao e vendas.
-          </div>
-          <Badge className="bg-accent/20 text-accent">Frontend only</Badge>
-        </div>
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )
