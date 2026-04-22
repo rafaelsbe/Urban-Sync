@@ -1,99 +1,522 @@
 // DADOS DE EXCESSO / MOCK DE IMÓVEIS E PROJETOS DA APLICAÇÃO
 
-export interface Property {
-  id: string;
-  title: string;
-  location: string;
-  price: number;
-  type: 'Apartamento' | 'Casa' | 'Terreno' | 'Comercial';
-  status: 'Venda' | 'Aluguel';
-  area: number;
-  bedrooms: number;
-  bathrooms: number;
-  imageUrl: string;
-  featured?: boolean;
+export type Propertys = {
+  id: number
+  slug: string
+  title: string
+  image: string
+  city: string
+  state: string
+  neighborhood: string
+  price: number
+  type: "Apartamento" | "Casa" | "Comercial" | "Terreno" | "Cobertura"
+  purpose: "Venda" | "Aluguel"
+  bedrooms?: number
+  bathrooms?: number
+  parkingSpots?: number
+  area: number
+  description: string
 }
 
-export interface Project {
-  id: string;
-  title: string;
-  category: 'Infraestrutura' | 'Residencial' | 'Comercial' | 'Reforma';
-  location: string;
-  year: number;
-  imageUrl: string;
-  description: string;
+export type Buildings = {
+  id: number
+  slug: string
+  name: string
+  conpanyName: string
+  coverImage: string
+  city: string
+  state: string
+  description: string
+  miniDescription: string
+  history: string
+  phone: string
+  social: {
+    instagram: string
+    linkedin: string
+    facebook: string
+  }
+  properties: Propertys[]
 }
 
-export const properties: Property[] = [
+export const buildings: Buildings[] = [
   {
-    id: '1',
-    title: 'Edifício Horizon Penthouse',
-    location: 'Bairro Nobre, São Paulo',
-    price: 3500000,
-    type: 'Apartamento',
-    status: 'Venda',
-    area: 280,
-    bedrooms: 4,
-    bathrooms: 5,
-    imageUrl: 'https://picsum.photos/seed/45/800/600',
-    featured: true,
+    id: 1,
+    slug: "horizon-jardins",
+    name: "Horizon Jardins",
+    conpanyName: "Imobiliária Horizonte",
+    coverImage: "data:image/jpeg;base64,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",
+    city: "Aracaju",
+    state: "SE",
+    description:
+      "Bem-vindo ao Condomínio Horion, um projeto pensado para quem não abre mão de conforto, sofisticação e qualidade de vida. Planejado com uma arquitetura inteligente e paisagismo exuberante, o Horion oferece o equilíbrio perfeito entre a tranquilidade de um refúgio particular e a dinâmica da vida moderna. Aqui, cada detalhe foi cuidadosamente desenhado para proporcionar bem-estar para você e sua família.",
+    miniDescription: "Projeto pensado para quem não abre mão de conforto, sofisticação e qualidade de vida.",
+    history:
+      "Fundada com a missão de modernizar o mercado imobiliário sergipano, a Imobiliária Horizonte cresceu apoiada em três pilares: confiança, inovação e proximidade com o cliente. Ao longo dos anos, consolidou sua atuação em vendas, locações e consultoria imobiliária, construindo uma reputação sólida no mercado regional.",
+    phone: "(79) 99999-1001",
+    social: {
+      instagram: "https://instagram.com/imobiliariahorizonte",
+      linkedin: "https://linkedin.com/company/imobiliariahorizonte",
+      facebook: "https://facebook.com/imobiliariahorizonte",
+    },
+    properties: [
+      {
+        id: 101,
+        slug: "apartamento-vista-mar-atalaia",
+        title: "Apartamento Vista Mar",
+        image: "https://picsum.photos/seed/horizonte-imovel-1/900/700",
+        city: "Aracaju",
+        state: "SE",
+        neighborhood: "Atalaia",
+        price: 450000,
+        type: "Apartamento",
+        purpose: "Venda",
+        bedrooms: 3,
+        bathrooms: 2,
+        parkingSpots: 2,
+        area: 98,
+        description:
+          "Apartamento moderno com excelente ventilação, varanda ampla e localização privilegiada próxima à orla.",
+      },
+      {
+        id: 102,
+        slug: "casa-condominio-aruana",
+        title: "Casa em Condomínio",
+        image: "https://picsum.photos/seed/horizonte-imovel-2/900/700",
+        city: "Aracaju",
+        state: "SE",
+        neighborhood: "Aruana",
+        price: 780000,
+        type: "Casa",
+        purpose: "Venda",
+        bedrooms: 4,
+        bathrooms: 3,
+        parkingSpots: 2,
+        area: 180,
+        description:
+          "Casa espaçosa em condomínio fechado, com área gourmet, quintal e excelente padrão construtivo.",
+      },
+      {
+        id: 103,
+        slug: "sala-comercial-jardins",
+        title: "Sala Comercial Premium",
+        image: "https://picsum.photos/seed/horizonte-imovel-3/900/700",
+        city: "Aracaju",
+        state: "SE",
+        neighborhood: "Jardins",
+        price: 320000,
+        type: "Comercial",
+        purpose: "Venda",
+        bathrooms: 1,
+        parkingSpots: 1,
+        area: 45,
+        description:
+          "Sala comercial em região estratégica, ideal para consultórios, escritórios e operações administrativas.",
+      },
+    ],
   },
   {
-    id: '2',
-    title: 'Casa das Palmeiras Modernistas',
-    location: 'Alphaville, Barueri',
-    price: 4200000,
-    type: 'Casa',
-    status: 'Venda',
-    area: 450,
-    bedrooms: 5,
-    bathrooms: 6,
-    imageUrl: 'https://picsum.photos/seed/78/800/600',
-    featured: true,
+    id: 2,
+    slug: "lunar-aruana",
+    name: "Lunar Nova Aruana",
+    conpanyName: "Grupo Atlas",
+    coverImage: "data:image/jpeg;base64,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",
+    city: "Aracaju",
+    state: "SE",
+    description: "Descubra o Condomínio Lunar Nova Aruana. Um projeto que une sofisticação, segurança e o prazer de viver a poucos minutos do mar. Projetado para quem busca o equilíbrio perfeito entre a energia da cidade e a serenidade da brisa litorânea.",
+    miniDescription: "Um projeto que une sofisticação, segurança e o prazer de viver a poucos minutos do mar.",
+    history:
+      "O Grupo Atlas surgiu com foco em entregar empreendimentos que unissem engenharia, durabilidade e visão de longo prazo. Com uma trajetória marcada por projetos robustos e compromisso com qualidade, a empresa se consolidou como referência em construção civil no Nordeste.",
+    phone: "(71) 99999-2002",
+    social: {
+      instagram: "https://instagram.com/grupoatlas",
+      linkedin: "https://linkedin.com/company/grupoatlas",
+      facebook: "https://facebook.com/grupoatlas",
+    },
+    properties: [
+      {
+        id: 201,
+        slug: "cobertura-luxo-barra",
+        title: "Cobertura de Luxo na Barra",
+        image: "https://picsum.photos/seed/atlas-imovel-1/900/700",
+        city: "Salvador",
+        state: "BA",
+        neighborhood: "Barra",
+        price: 1850000,
+        type: "Cobertura",
+        purpose: "Venda",
+        bedrooms: 4,
+        bathrooms: 5,
+        parkingSpots: 3,
+        area: 260,
+        description:
+          "Cobertura sofisticada com vista panorâmica, acabamentos premium e área de lazer privativa.",
+      },
+      {
+        id: 202,
+        slug: "casa-alto-padrao-pituba",
+        title: "Casa Alto Padrão na Pituba",
+        image: "https://picsum.photos/seed/atlas-imovel-2/900/700",
+        city: "Salvador",
+        state: "BA",
+        neighborhood: "Pituba",
+        price: 1350000,
+        type: "Casa",
+        purpose: "Venda",
+        bedrooms: 5,
+        bathrooms: 4,
+        parkingSpots: 3,
+        area: 240,
+        description:
+          "Casa ampla em bairro nobre, ideal para famílias que buscam conforto, segurança e localização estratégica.",
+      },
+      {
+        id: 203,
+        slug: "terreno-avenida-paralela",
+        title: "Terreno Comercial na Paralela",
+        image: "https://picsum.photos/seed/atlas-imovel-3/900/700",
+        city: "Salvador",
+        state: "BA",
+        neighborhood: "Paralela",
+        price: 980000,
+        type: "Terreno",
+        purpose: "Venda",
+        area: 600,
+        description:
+          "Terreno com excelente potencial para incorporação ou implantação de operação comercial.",
+      },
+    ],
   },
   {
-    id: '3',
-    title: 'Loft Industrial Central',
-    location: 'Centro Histórico, Rio de Janeiro',
-    price: 7500,
-    type: 'Apartamento',
-    status: 'Aluguel',
-    area: 95,
-    bedrooms: 1,
-    bathrooms: 2,
-    imageUrl: 'https://picsum.photos/seed/23/800/600',
-  },
-  {
-    id: '4',
-    title: 'Mansão Vista Mar',
-    location: 'Angra dos Reis, RJ',
-    price: 12000000,
-    type: 'Casa',
-    status: 'Venda',
-    area: 800,
-    bedrooms: 6,
-    bathrooms: 8,
-    imageUrl: 'https://picsum.photos/seed/mar1/800/600',
+    id: 3,
+    slug: "luar-praia",
+    name: "Condominio Luar da praia",
+    conpanyName: "Nexus Realty",
+    coverImage: "data:image/jpeg;base64,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",
+    city: "Aracaju",
+    state: "SE",
+    description:
+      "Prepare-se para viver a experiência definitiva de bem-estar no Condomínio Luar da Praia. Um refúgio exclusivo desenhado para quem deseja despertar todos os dias com a brisa do oceano e o horizonte como moldura.",
+    miniDescription: "Um refúgio exclusivo desenhado para quem deseja despertar todos os dias com a brisa do oceano.",
+    history:
+      "Criada para ser uma imobiliária orientada por tecnologia, a Nexus Realty nasceu com o objetivo de transformar a jornada de compra, venda e locação em algo mais simples, inteligente e eficiente. Sua atuação combina ferramentas digitais, análise de dados e atendimento consultivo.",
+    phone: "(81) 99999-3003",
+    social: {
+      instagram: "https://instagram.com/nexusrealty",
+      linkedin: "https://linkedin.com/company/nexusrealty",
+      facebook: "https://facebook.com/nexusrealty",
+    },
+    properties: [
+      {
+        id: 301,
+        slug: "apartamento-boa-viagem",
+        title: "Apartamento em Boa Viagem",
+        image: "https://picsum.photos/seed/nexus-imovel-1/900/700",
+        city: "Recife",
+        state: "PE",
+        neighborhood: "Boa Viagem",
+        price: 620000,
+        type: "Apartamento",
+        purpose: "Venda",
+        bedrooms: 3,
+        bathrooms: 2,
+        parkingSpots: 2,
+        area: 110,
+        description:
+          "Apartamento bem localizado, com planta funcional e proximidade de serviços, escolas e áreas de lazer.",
+      },
+      {
+        id: 302,
+        slug: "sala-corporativa-recife-antigo",
+        title: "Sala Corporativa no Recife Antigo",
+        image: "https://picsum.photos/seed/nexus-imovel-2/900/700",
+        city: "Recife",
+        state: "PE",
+        neighborhood: "Recife Antigo",
+        price: 5400,
+        type: "Comercial",
+        purpose: "Aluguel",
+        bathrooms: 2,
+        parkingSpots: 2,
+        area: 85,
+        description:
+          "Espaço corporativo para empresas que buscam localização estratégica e ambiente profissional moderno.",
+      },
+      {
+        id: 303,
+        slug: "casa-condominio-aldeia",
+        title: "Casa em Condomínio em Aldeia",
+        image: "https://picsum.photos/seed/nexus-imovel-3/900/700",
+        city: "Recife",
+        state: "PE",
+        neighborhood: "Aldeia",
+        price: 890000,
+        type: "Casa",
+        purpose: "Venda",
+        bedrooms: 4,
+        bathrooms: 3,
+        parkingSpots: 2,
+        area: 190,
+        description:
+          "Casa com excelente integração de ambientes, área verde e proposta ideal para moradia familiar.",
+      },
+    ],
   }
 ];
 
-export const projects: Project[] = [
+export type Company = {
+  id: number
+  slug: string
+  name: string
+  logo: string
+  coverImage: string
+  city: string
+  state: string
+  segment: string
+  description: string
+  miniDescription: string
+  history: string
+  email: string
+  phone: string
+  website?: string
+  social: {
+    instagram: string
+    linkedin: string
+    facebook: string
+  }
+  properties: Propertys[]
+}
+
+export const companies: Company[] = [
   {
-    id: 'p1',
-    title: 'Ponte Estaiada Metropolitan',
-    category: 'Infraestrutura',
-    location: 'Grande SP',
-    year: 2023,
-    description: 'Complexo viário integrando bairros com tecnologia de ponta em concreto protendido.',
-    imageUrl: 'https://picsum.photos/seed/99/800/600',
+    id: 1,
+    slug: "imobiliaria-horizonte",
+    name: "Imobiliária Horizonte",
+    logo: "https://picsum.photos/seed/horizonte-logo/500/300",
+    coverImage: "https://picsum.photos/seed/horizonte-cover/1400/900",
+    city: "Aracaju",
+    state: "SE",
+    segment: "Imobiliária",
+    description:
+      "Especializada em imóveis residenciais e comerciais, a Imobiliária Horizonte combina atendimento consultivo, tecnologia e agilidade para conectar pessoas aos imóveis ideais.",
+    miniDescription: "Especializada em imóveis residenciais e comerciais com foco em inovação digital.",
+    history:
+      "Fundada com a missão de modernizar o mercado imobiliário sergipano, a Imobiliária Horizonte cresceu apoiada em três pilares: confiança, inovação e proximidade com o cliente. Ao longo dos anos, consolidou sua atuação em vendas, locações e consultoria imobiliária, construindo uma reputação sólida no mercado regional.",
+    email: "contato@horizonte.com.br",
+    phone: "(79) 99999-1001",
+    website: "https://horizonte.com.br",
+    social: {
+      instagram: "https://instagram.com/imobiliariahorizonte",
+      linkedin: "https://linkedin.com/company/imobiliariahorizonte",
+      facebook: "https://facebook.com/imobiliariahorizonte",
+    },
+    properties: [
+      {
+        id: 101,
+        slug: "apartamento-vista-mar-atalaia",
+        title: "Apartamento Vista Mar",
+        image: "https://picsum.photos/seed/horizonte-imovel-1/900/700",
+        city: "Aracaju",
+        state: "SE",
+        neighborhood: "Atalaia",
+        price: 450000,
+        type: "Apartamento",
+        purpose: "Venda",
+        bedrooms: 3,
+        bathrooms: 2,
+        parkingSpots: 2,
+        area: 98,
+        description:
+          "Apartamento moderno com excelente ventilação, varanda ampla e localização privilegiada próxima à orla.",
+      },
+      {
+        id: 102,
+        slug: "casa-condominio-aruana",
+        title: "Casa em Condomínio",
+        image: "https://picsum.photos/seed/horizonte-imovel-2/900/700",
+        city: "Aracaju",
+        state: "SE",
+        neighborhood: "Aruana",
+        price: 780000,
+        type: "Casa",
+        purpose: "Venda",
+        bedrooms: 4,
+        bathrooms: 3,
+        parkingSpots: 2,
+        area: 180,
+        description:
+          "Casa espaçosa em condomínio fechado, com área gourmet, quintal e excelente padrão construtivo.",
+      },
+      {
+        id: 103,
+        slug: "sala-comercial-jardins",
+        title: "Sala Comercial Premium",
+        image: "https://picsum.photos/seed/horizonte-imovel-3/900/700",
+        city: "Aracaju",
+        state: "SE",
+        neighborhood: "Jardins",
+        price: 320000,
+        type: "Comercial",
+        purpose: "Venda",
+        bathrooms: 1,
+        parkingSpots: 1,
+        area: 45,
+        description:
+          "Sala comercial em região estratégica, ideal para consultórios, escritórios e operações administrativas.",
+      },
+    ],
   },
   {
-    id: 'p2',
-    title: 'Corporate Tower Alpha',
-    category: 'Comercial',
-    location: 'Avenida Faria Lima, SP',
-    year: 2022,
-    description: 'Sede corporativa com certificação LEED Platinum e fachada em vidro duplo.',
-    imageUrl: 'https://picsum.photos/seed/101/800/600',
+    id: 2,
+    slug: "grupo-atlas",
+    name: "Grupo Atlas",
+    logo: "https://picsum.photos/seed/atlas-logo/500/300",
+    coverImage: "https://picsum.photos/seed/atlas-cover/1400/900",
+    city: "Salvador",
+    state: "BA",
+    segment: "Construção",
+    description:
+      "Empresa voltada para desenvolvimento urbano e construção civil, com atuação em obras residenciais, comerciais e projetos de infraestrutura.",
+    miniDescription: "Referência em construção civil e desenvolvimento urbano.",
+    history:
+      "O Grupo Atlas surgiu com foco em entregar empreendimentos que unissem engenharia, durabilidade e visão de longo prazo. Com uma trajetória marcada por projetos robustos e compromisso com qualidade, a empresa se consolidou como referência em construção civil no Nordeste.",
+    email: "contato@grupoatlas.com.br",
+    phone: "(71) 99999-2002",
+    website: "https://grupoatlas.com.br",
+    social: {
+      instagram: "https://instagram.com/grupoatlas",
+      linkedin: "https://linkedin.com/company/grupoatlas",
+      facebook: "https://facebook.com/grupoatlas",
+    },
+    properties: [
+      {
+        id: 201,
+        slug: "cobertura-luxo-barra",
+        title: "Cobertura de Luxo na Barra",
+        image: "https://picsum.photos/seed/atlas-imovel-1/900/700",
+        city: "Salvador",
+        state: "BA",
+        neighborhood: "Barra",
+        price: 1850000,
+        type: "Cobertura",
+        purpose: "Venda",
+        bedrooms: 4,
+        bathrooms: 5,
+        parkingSpots: 3,
+        area: 260,
+        description:
+          "Cobertura sofisticada com vista panorâmica, acabamentos premium e área de lazer privativa.",
+      },
+      {
+        id: 202,
+        slug: "casa-alto-padrao-pituba",
+        title: "Casa Alto Padrão na Pituba",
+        image: "https://picsum.photos/seed/atlas-imovel-2/900/700",
+        city: "Salvador",
+        state: "BA",
+        neighborhood: "Pituba",
+        price: 1350000,
+        type: "Casa",
+        purpose: "Venda",
+        bedrooms: 5,
+        bathrooms: 4,
+        parkingSpots: 3,
+        area: 240,
+        description:
+          "Casa ampla em bairro nobre, ideal para famílias que buscam conforto, segurança e localização estratégica.",
+      },
+      {
+        id: 203,
+        slug: "terreno-avenida-paralela",
+        title: "Terreno Comercial na Paralela",
+        image: "https://picsum.photos/seed/atlas-imovel-3/900/700",
+        city: "Salvador",
+        state: "BA",
+        neighborhood: "Paralela",
+        price: 980000,
+        type: "Terreno",
+        purpose: "Venda",
+        area: 600,
+        description:
+          "Terreno com excelente potencial para incorporação ou implantação de operação comercial.",
+      },
+    ],
+  },
+  {
+    id: 3,
+    slug: "nexus-realty",
+    name: "Nexus Realty",
+    logo: "https://picsum.photos/seed/nexus-logo/500/300",
+    coverImage: "https://picsum.photos/seed/nexus-cover/1400/900",
+    city: "Recife",
+    state: "PE",
+    segment: "Tecnologia",
+    description:
+      "A Nexus Realty une inteligência de dados, operação comercial e tecnologia imobiliária para acelerar resultados e melhorar a experiência do cliente.",
+    miniDescription: "Empresa focada em tecnologia e gestão inteligente de imóveis.",
+    history:
+      "Criada para ser uma imobiliária orientada por tecnologia, a Nexus Realty nasceu com o objetivo de transformar a jornada de compra, venda e locação em algo mais simples, inteligente e eficiente. Sua atuação combina ferramentas digitais, análise de dados e atendimento consultivo.",
+    email: "contato@nexusrealty.com.br",
+    phone: "(81) 99999-3003",
+    website: "https://nexusrealty.com.br",
+    social: {
+      instagram: "https://instagram.com/nexusrealty",
+      linkedin: "https://linkedin.com/company/nexusrealty",
+      facebook: "https://facebook.com/nexusrealty",
+    },
+    properties: [
+      {
+        id: 301,
+        slug: "apartamento-boa-viagem",
+        title: "Apartamento em Boa Viagem",
+        image: "https://picsum.photos/seed/nexus-imovel-1/900/700",
+        city: "Recife",
+        state: "PE",
+        neighborhood: "Boa Viagem",
+        price: 620000,
+        type: "Apartamento",
+        purpose: "Venda",
+        bedrooms: 3,
+        bathrooms: 2,
+        parkingSpots: 2,
+        area: 110,
+        description:
+          "Apartamento bem localizado, com planta funcional e proximidade de serviços, escolas e áreas de lazer.",
+      },
+      {
+        id: 302,
+        slug: "sala-corporativa-recife-antigo",
+        title: "Sala Corporativa no Recife Antigo",
+        image: "https://picsum.photos/seed/nexus-imovel-2/900/700",
+        city: "Recife",
+        state: "PE",
+        neighborhood: "Recife Antigo",
+        price: 5400,
+        type: "Comercial",
+        purpose: "Aluguel",
+        bathrooms: 2,
+        parkingSpots: 2,
+        area: 85,
+        description:
+          "Espaço corporativo para empresas que buscam localização estratégica e ambiente profissional moderno.",
+      },
+      {
+        id: 303,
+        slug: "casa-condominio-aldeia",
+        title: "Casa em Condomínio em Aldeia",
+        image: "https://picsum.photos/seed/nexus-imovel-3/900/700",
+        city: "Recife",
+        state: "PE",
+        neighborhood: "Aldeia",
+        price: 890000,
+        type: "Casa",
+        purpose: "Venda",
+        bedrooms: 4,
+        bathrooms: 3,
+        parkingSpots: 2,
+        area: 190,
+        description:
+          "Casa com excelente integração de ambientes, área verde e proposta ideal para moradia familiar.",
+      },
+    ],
   }
 ];

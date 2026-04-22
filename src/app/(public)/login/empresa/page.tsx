@@ -5,8 +5,11 @@ import { Building2, ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Footer } from "@/components/Footer"
+import path from "path"
 
 export default function EmpresaLoginPage() {
+
+    const paths = []
     return (
         <main className="min-h-screen bg-background">
             <div className="grid min-h-screen lg:grid-cols-[520px_1fr]">
@@ -78,7 +81,7 @@ export default function EmpresaLoginPage() {
 
                         {/* Help link */}
                         <div className="mt-10 space-y-1">
-                            <p className="text-white">Não sabe o domínio o login da sua empresa?</p>
+                            <p className="text-white">Não sabe o login da sua empresa?</p>
                             <a
                                 href="#"
                                 className="font-semibold text-accent underline underline-offset-2 hover:opacity-80 transition-opacity duration-300 ease"
@@ -95,7 +98,7 @@ export default function EmpresaLoginPage() {
                             <Link href="/login/cliente" className="block">
                                 <Button
                                     className="w-[220px] bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
-                                    Vá para a área de clientes
+                                    Área de clientes
                                     <ArrowUpRight />
                                 </Button>
                             </Link>
