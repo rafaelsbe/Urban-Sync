@@ -127,10 +127,10 @@ export default function Home() {
             </div>
           </div>
           <div className="space-y-8">
-            <Badge className="bg-primary/50 text-accent border-accent/20 font-bold px-4 py-1">POR QUE A CONSTRUPRIME?</Badge>
+            <Badge className="bg-primary/50 text-accent border-accent/20 font-bold px-4 py-1">POR QUE A UrbanSync?</Badge>
             <h2 className="text-4xl md:text-5xl font-headline font-bold leading-tight">Expertise que garante a <span className="text-accent italic">sua segurança</span>.</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Diferente de imobiliárias convencionais, a ConstruPrime nasceu no canteiro de obras. Analisamos cada imóvel com olhos de engenheiro, garantindo que seu investimento seja estruturalmente sólido e esteticamente impecável.
+              Diferente de imobiliárias convencionais, a UrbanSync nasceu no canteiro de obras. Analisamos cada imóvel com olhos de engenheiro, garantindo que seu investimento seja estruturalmente sólido e esteticamente impecável.
             </p>
             <ul className="space-y-4">
               {[
