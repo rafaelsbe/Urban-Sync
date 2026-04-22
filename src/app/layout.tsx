@@ -3,7 +3,7 @@ import type {Metadata} from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'ConstruPrime | Engenharia Civil e Imobiliária',
+  title: 'UrbanSync | Telecomunicação',
   description: 'Soluções sólidas em engenharia e os melhores imóveis para você.',
 };
 
