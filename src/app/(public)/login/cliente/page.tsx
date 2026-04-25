@@ -10,9 +10,9 @@ import { GoogleSignInButton } from "@/components/GoogleSignInButton"
 export default function EmpresaLoginPage() {
     return (
         <main className="min-h-screen bg-background">
-            <div className="grid min-h-screen lg:grid-cols-[520px_1fr]">
+            <div className="grid min-h-screen grid-cols-1 lg:grid-cols-[520px_1fr]">
                 {/* Left Side */}
-                <section className="flex items-start justify-center mt-20 bg-background/80 backdrop-blur-md border-b border-white/5 px-6 py-10">
+                <section className="flex items-start justify-center mt-8 sm:mt-16 lg:mt-20 bg-background/80 backdrop-blur-md border-b border-white/5 px-4 py-8 sm:px-6 sm:py-10">
                     <div className="w-full max-w-[340px]">
                         {/* Logo */}
                         <div className="mb-12 flex items-center gap-[4rem]">
@@ -28,11 +28,11 @@ export default function EmpresaLoginPage() {
 
                         {/* Heading */}
                         <div className="mb-8 space-y-2">
-                            <h2 className="text-5xl font-extrabold tracking-tight text-white">
+                            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-extrabold tracking-tight text-white">
                                 Bem-vindo(a)!
                             </h2>
 
-                            <div className="flex items-center gap-2 text-lg text-white">
+                            <div className="flex items-center gap-2 text-sm sm:text-base lg:text-lg text-white">
                                 <span>Informe o  seu login e senha </span>
                             </div>
                         </div>
@@ -101,13 +101,13 @@ export default function EmpresaLoginPage() {
                         </div>
 
                         {/* CTA options */}
-                        <div className="mt-[10rem] flex flex-col items-center gap-2 text-center">
-                            <p className="text-center text-sm text-white/90">
+                        <div className="mt-8 sm:mt-12 lg:mt-[10rem] flex flex-col items-center gap-2 text-center">
+                            <p className="text-center text-xs sm:text-sm text-white/90">
                                 Você quer administrar seus imóveis? <br />
                             </p>
                             <Link href="/login/cliente" className="block">
                                 <Button
-                                    className="w-[220px] bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
+                                    className="w-full sm:w-[220px] bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
                                     Área de Empresas
                                     <ArrowUpRight />
                                 </Button>

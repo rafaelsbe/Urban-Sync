@@ -9,9 +9,9 @@ import { Footer } from "@/components/Footer"
 export default function LoginChoicePage() {
     return (
         <main className="min-h-screen bg-background">
-            <div className="grid min-h-screen lg:grid-cols-[520px_1fr]">
+            <div className="grid min-h-screen grid-cols-1 lg:grid-cols-[520px_1fr]">
                 {/* Left Side */}
-                <section className="flex items-center justify-center bg-background/80 px-6 py-10 backdrop-blur-md border-b border-white/5">
+                <section className="flex items-center justify-center bg-background/80 px-4 py-8 sm:px-6 sm:py-10 backdrop-blur-md border-b border-white/5">
                     <div className="w-full max-w-[360px]">
                         {/* Logo */}
                         <div className="mb-12">
@@ -27,10 +27,10 @@ export default function LoginChoicePage() {
 
                         {/* Heading */}
                         <div className="mb-8 space-y-3">
-                            <h1 className="text-4xl font-extrabold tracking-tight text-white">
+                            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
                                 Como deseja entrar?
                             </h1>
-                            <p className="text-white/80">
+                            <p className="text-sm sm:text-base text-white/80">
                                 Escolha o tipo de acesso para continuar na plataforma.
                             </p>
                         </div>

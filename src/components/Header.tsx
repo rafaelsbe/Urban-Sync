@@ -23,13 +23,12 @@ export function Header() {
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-3" : "bg-transparent py-6"
       }`}>
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           <div className="group-hover:rotate-6 transition-transform">
             <img src="/favicon.ico" alt="Logo" width={30} height={30} />
-            {/* <Building2 className="w-6 h-6 text-accent-foreground" /> */}
           </div>
-          <span className="font-headline text-2xl font-bold tracking-tighter">
+          <span className="font-headline text-lg sm:text-2xl font-bold tracking-tighter">
             Urbarn<span className="text-accent">Sync</span>
           </span>
         </Link>
@@ -57,25 +56,29 @@ export function Header() {
 
         {/* Mobile Menu Trigger */}
         <button
-          className="lg:hidden p-2 text-foreground"
+          className="lg:hidden p-2 text-foreground hover:bg-white/10 rounded-lg transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+          {isMobileMenuOpen ? <X className="w-6 h-6 sm:w-8 sm:h-8" /> : <Menu className="w-6 h-6 sm:w-8 sm:h-8" />}
         </button>
       </div>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-background border-b border-white/5 p-6 animate-in slide-in-from-top duration-300">
-          <nav className="flex flex-col gap-4 text-lg font-medium">
-            <Link href="#" className="hover:text-accent py-2 border-b border-white/5">Venda</Link>
-            <Link href="#" className="hover:text-accent py-2 border-b border-white/5">Aluguel</Link>
-            <Link href="#" className="hover:text-accent py-2 border-b border-white/5">Engenharia</Link>
-            <Link href="#" className="hover:text-accent py-2 border-b border-white/5">Projetos</Link>
-            <Link href="#" className="hover:text-accent py-2">Contato</Link>
+        <div className="lg:hidden fixed top-20 left-0 w-full bg-background/95 backdrop-blur-md border-b border-white/5 p-6 z-40 animate-in slide-in-from-top duration-300">
+          <nav className="flex flex-col gap-4 text-base font-medium max-h-[calc(100vh-120px)] overflow-y-auto">
+            <Link href="#imoveis" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Imóveis</Link>
+            <Link href="#sobre" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Sobre Nós</Link>
+            <Link href="#empresas" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Parceiros</Link>
+            <Link href="#planos" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Planos</Link>
+            <Link href="/contato" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Contato</Link>
             <div className="flex flex-col gap-2 pt-4">
-              <Button className="w-full bg-accent text-accent-foreground font-bold">FAZER LOGIN</Button>
-              <Button variant="outline" className="w-full border-white/10 font-bold">FALE CONOSCO</Button>
+              <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
+                <Button className="w-full bg-accent text-accent-foreground font-bold">FAZER LOGIN</Button>
+              </Link>
+              <Link href="/contato" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
+                <Button variant="outline" className="w-full border-white/10 font-bold">FALE CONOSCO</Button>
+              </Link>
             </div>
           </nav>
         </div>
