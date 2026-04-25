@@ -29,9 +29,9 @@ export default function CompanyPage({ params }: CompanyPageProps) {
 
   return (
     <main className="min-h-screen bg-background">
-      <section className="bg-primary/5 py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="mb-8">
+      <section className="bg-primary/5 py-8 sm:py-16 lg:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-4">
+          <div className="mb-6 sm:mb-8">
             <Link href="/imoveis">
               <Button
                 variant="outline"
@@ -43,9 +43,9 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             </Link>
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr]">
+          <div className="grid gap-6 sm:gap-8 lg:gap-10 grid-cols-1 lg:grid-cols-[1.2fr_1fr]">
             {/* Imagem */}
-            <div className="relative min-h-[320px] overflow-hidden rounded-3xl border border-white/5 bg-secondary/20 md:min-h-[500px]">
+            <div className="relative min-h-[250px] sm:min-h-[320px] overflow-hidden rounded-2xl sm:rounded-3xl border border-white/5 bg-secondary/20 md:min-h-[500px]">
               <Image
                 src={building.coverImage}
                 alt={building.name}
@@ -56,30 +56,30 @@ export default function CompanyPage({ params }: CompanyPageProps) {
             </div>
 
             {/* Informações */}
-            <div className="flex flex-col justify-center rounded-3xl border border-white/5 bg-secondary/20 p-8 md:p-10">
-              <div className="mb-4 flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <div className="flex flex-col justify-center rounded-2xl sm:rounded-3xl border border-white/5 bg-secondary/20 p-6 sm:p-8 lg:p-10">
+              <div className="mb-4 flex items-center gap-2 text-xs sm:text-sm font-medium text-muted-foreground">
                 <MapPin className="h-4 w-4 text-accent" />
                 <span>
                   {building.city}/{building.state}
                 </span>
               </div>
 
-              <h1 className="mb-4 text-4xl font-headline font-bold md:text-5xl">
+              <h1 className="mb-4 text-2xl sm:text-3xl lg:text-5xl font-headline font-bold">
                 {building.name}
               </h1>
 
-              <p className="mb-6 text-base leading-relaxed text-muted-foreground">
+              <p className="mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed text-muted-foreground">
                 {building.description}
               </p>
 
-              <div className="mb-8">
-                <h2 className="mb-3 text-xl font-bold">História da empresa</h2>
-                <p className="text-sm leading-7 text-muted-foreground md:text-base">
+              <div className="mb-6 sm:mb-8">
+                <h2 className="mb-2 sm:mb-3 text-lg sm:text-xl font-bold">História da empresa</h2>
+                <p className="text-xs sm:text-sm lg:text-base leading-6 sm:leading-7 text-muted-foreground">
                   {building.history}
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 <Link href={building.social.instagram} target="_blank">
                   <Button
                     variant="outline"

@@ -8,25 +8,25 @@ import { companies } from "@/lib/data"
 export default function CompaniesPage() {
   return (
     <main className="min-h-screen bg-background">
-      <section className="bg-primary/5 py-24">
-        <div className="container mx-auto px-4">
-          <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <section className="bg-primary/5 py-12 sm:py-20 lg:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-4">
+          <div className="mb-12 sm:mb-16 flex flex-col gap-4 sm:gap-6 md:flex-row md:items-end md:justify-between">
 
             {/* TEXTO */}
             <div className="max-w-3xl text-center md:text-left">
               <Badge
                 variant="outline"
-                className="mb-4 border-accent/30 px-4 py-1 font-bold uppercase tracking-widest text-accent"
+                className="mb-3 sm:mb-4 border-accent/30 px-3 sm:px-4 py-1 text-xs sm:text-sm font-bold uppercase tracking-widest text-accent"
               >
                 Empresas Parceiras
               </Badge>
 
-              <h1 className="mb-6 text-4xl font-headline font-bold md:text-5xl">
+              <h1 className="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-headline font-bold">
                 Conheça todas as nossas{" "}
                 <span className="italic text-accent">empresas parceiras</span>
               </h1>
 
-              <p className="text-lg text-muted-foreground">
+              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
                 Explore as empresas que fazem parte do nosso ecossistema e veja
                 como elas utilizam nossa tecnologia para transformar processos,
                 atendimento e resultados.
@@ -46,7 +46,7 @@ export default function CompaniesPage() {
 
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
             {companies.map((company) => (
               <div
                 key={company.id}
