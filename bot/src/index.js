@@ -16,8 +16,15 @@ client.on('qr', qr => {
   qrcode.generate(qr, { small: true });
 });
 
-client.on('ready', () => {
+client.on('ready', async () => {
   console.log('✅ Bot conectado!');
+
+  try {
+    const number = "xxxxxxxxxxxx@c.us";
+    await client.sendMessage(number, "Bot iniciado");
+  } catch(err) {
+    console.error('Erro ao enviar mensagem:', err)
+  }
 });
 
 client.on('message', async msg => {
