@@ -1,4 +1,5 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
+const { saveMessage } = require('../../bot/src/services/messageService');
 
 const bots = {};
 
