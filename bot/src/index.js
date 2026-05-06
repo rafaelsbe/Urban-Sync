@@ -18,7 +18,7 @@ client.on('qr', qr => {
   qrcode.generate(qr, { small: true });
 });
 
-client.on('ready', async (msg) => {
+client.on('ready', async () => {
   console.log('✅ Bot conectado!');
 
   try {
@@ -39,7 +39,12 @@ client.on('message', async (msg) => {
     console.log('🚫 Ignorando usuário fora do teste:', msg.from);
     return;
   }
-  await handleMessage(msg);
+
+  try {
+    await handleMessage(client, msg);
+  } catch {
+    console.error('Erro ao processar mensagem:', err);
+  }
 });
 
 client.initialize();

@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+
 const TEST_MODE = process.env.TEST_MODE === 'true';
 const TEST_NUMBER = process.env.TEST_NUMBER;
 

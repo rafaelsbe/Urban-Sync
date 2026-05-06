@@ -1,18 +1,18 @@
 const supabase = require('./supabaseClient');
 
-async function saveMessage({ companyId, user, message, from }) {
-  const { error } = await supabase.from('messages').insert([
-    {
+async function saveLeadInteraction({ companyId, user, message, name }) {
+  
+  const { error } = await supabase
+    .from('leads') 
+    .upsert({
       company_id: companyId,
-      user_phone: user,
-      message,
-      sender: from
-    }
-  ]);
+      client_phone: user, // Nome da coluna no seu print: client_phone
+      message: message,    // Nome da coluna no seu print: message
+      client_name: name,   // Nome da coluna no seu print: client_name
+      status: 'novo'       // Status inicial conforme seu enum no print
+    }, { onConflict: 'client_phone' });
 
-  if (error) {
-    console.error('Erro ao salvar mensagem:', error);
-  }
+  if (error) console.error('Erro Supabase:', error.message);
 }
 
 async function getMessages(user) {
