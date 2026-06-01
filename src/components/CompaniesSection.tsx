@@ -16,7 +16,7 @@ export function CompaniesSection({ id }: CompaniesSectionProps) {
         <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-2xl">
             <Badge className="mb-4 border-accent/30 px-4 py-1 font-bold uppercase tracking-widest text-accent" variant="outline">
-              Empresas Parceiras
+              Empresas
             </Badge>
 
             <h2 className="mb-6 text-4xl font-headline font-bold md:text-5xl">

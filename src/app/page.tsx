@@ -28,7 +28,7 @@ export default function Home() {
       id: 2,
       name: "PRO",
       purpose: "Automação completa + Organização de Processos (CRM).",
-      includes: ["Tudo do plano START", "Agendamento Automático feito pela IA", "Registro Automático no CRM: O lead entra no funil de vendas da imobiliária", "Lembretes de Visita: Disparo automático de mensagem 2h antes de visitas agendadas"],
+      includes: ["Tudo do plano START", "Agendamento Automático feito pela IA", "Registro Automático no CRM: O lead entra no funil de vendas da empresa", "Lembretes automáticos para leads qualificados"],
       setupValue: 2900,
       monthValue: 1490,
     },
@@ -36,7 +36,7 @@ export default function Home() {
       id: 3,
       name: "ELITE",
       purpose: "Inteligência de Dados e Lançamentos (Alta Performance).",
-      includes: ["Tudo do Plano PRO", "IA Narrativa Personalizada: A IA é treinada com o 'Manual de Vendas' da imobiliária", "Relatório Mensal de BI: Análise de dados para antecipar tendências do mercado.", "Treinamento da Equipe: Consultoria mensal de 1h para ensinar uso da plataforma."],
+      includes: ["Tudo do Plano PRO", "IA Narrativa Personalizada: A IA é treinada com o roteiro comercial da empresa", "Relatório Mensal de BI: Análise de dados para antecipar tendências do mercado.", "Treinamento da Equipe: Consultoria mensal de 1h para uso da plataforma."],
       setupValue: 4500,
       monthValue: 2500,
     }
@@ -49,32 +49,32 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <Image
-          src="https://picsum.photos/seed/12/1920/1080"
-          alt="Luxury Architecture"
+          src="https://picsum.photos/seed/modern-buildings/1920/1080"
+          alt="Modern urban buildings"
           fill
           priority
           className="object-cover brightness-[0.3]"
-          data-ai-hint="modern architecture"
+          data-ai-hint="modern city skyline"
         />
         <div className="container mx-auto px-4 relative z-10 text-center space-y-8 animate-in fade-in zoom-in duration-1000">
           <Badge className="bg-accent/20 text-accent border-accent/40 font-bold tracking-[0.2em] uppercase px-6 py-2 backdrop-blur-sm">
-            Engenharia & Real Estate
+            Intermediação & Empresas
           </Badge>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-bold leading-tight max-w-5xl mx-auto">
-            Solidez que <span className="text-accent italic">Transforma</span> Espaços.
+            Solidez que <span className="text-accent italic">conecta</span> pessoas às empresas certas.
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Especialistas em projetos de alta complexidade e consultoria imobiliária personalizada. Encontre seu próximo investimento ou construa seu legado conosco.
+            A UrbanSync conecta clientes a empresas com atendimento estratégico, orientação e direcionamento assertivo. Encontre a empresa ideal e saiba como falar com ela rapidamente.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/imoveis">
+            <Link href="/empresas">
               <Button size="lg" className="bg-accent hover:bg-accent/80 text-accent-foreground font-bold h-14 px-10 text-lg rounded-full">
-                VER IMÓVEIS
+                VER EMPRESAS
                 <ChevronRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
             <Button size="lg" variant="outline" className="border-white/20 hover:bg-white/10 font-bold h-14 px-10 text-lg rounded-full">
-              FALAR COM ENGENHEIRO
+              FALAR COM NOSSAS EQUIPES
             </Button>
           </div>
         </div>
@@ -103,30 +103,30 @@ export default function Home() {
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
             <Image
-              src="https://picsum.photos/seed/engineer-val/800/800"
-              alt="Professional Engineering"
+              src="https://picsum.photos/seed/urban-office/800/800"
+              alt="Urban office skyline"
               fill
               className="object-cover"
-              data-ai-hint="construction site engineer"
+              data-ai-hint="modern city office"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60" />
             <div className="absolute bottom-8 left-8 right-8 bg-background/80 backdrop-blur-xl p-8 rounded-2xl border border-white/5">
               <div className="text-4xl font-headline font-bold text-accent mb-1">15+ Anos</div>
-              <div className="text-sm font-bold tracking-widest uppercase opacity-70">De Excelência Técnica</div>
+              <div className="text-sm font-bold tracking-widest uppercase opacity-70">De experiência conectando empresas</div>
             </div>
           </div>
           <div className="space-y-8">
             <Badge className="bg-primary/50 text-accent border-accent/20 font-bold px-4 py-1">POR QUE A UrbanSync?</Badge>
-            <h2 className="text-4xl md:text-5xl font-headline font-bold leading-tight">Expertise que garante a <span className="text-accent italic">sua segurança</span>.</h2>
+            <h2 className="text-4xl md:text-5xl font-headline font-bold leading-tight">Conexões que geram <span className="text-accent italic">resultado</span>.</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Diferente de imobiliárias convencionais, a UrbanSync nasceu no canteiro de obras. Analisamos cada imóvel com olhos de engenheiro, garantindo que seu investimento seja estruturalmente sólido e esteticamente impecável.
+              Diferente de plataformas tradicionais, a UrbanSync nasce para conectar clientes e empresas com inteligência comercial, atendimento qualificado e acompanhamento estratégico.
             </p>
             <ul className="space-y-4">
               {[
-                "Vistoria técnica detalhada em todas as unidades",
-                "Gestão completa de documentação e engenharia legal",
-                "Projetos personalizados de reforma pós-compra",
-                "Consultoria em investimentos imobiliários estruturados"
+                "Qualificação automática de leads e demandas",
+                "Encaminhamento seguro para a empresa certa",
+                "Atendimento via WhatsApp com respostas rápidas",
+                "Orientação clara para o próximo passo do contato"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-4">
                   <CheckCircle2 className="w-6 h-6 text-accent shrink-0" />
@@ -166,18 +166,18 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
           <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8 italic">Pronto para dar o próximo passo?</h2>
           <p className="text-xl text-muted-foreground mb-12">
-            Seja para comprar, vender ou construir, nossa equipe está pronta para oferecer a melhor consultoria técnica do mercado.
+            Se você quer encontrar a empresa certa, qualificar o contato ou ser direcionado à empresa adequada, estamos aqui para conectar você.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <div className="bg-card p-8 rounded-2xl border border-white/5 flex flex-col items-center gap-4 flex-1">
-              <h3 className="text-2xl font-bold">Quero um Imóvel</h3>
-              <p className="text-sm text-muted-foreground text-center">Fale com nossos consultores especialistas.</p>
-              <Button className="w-full bg-accent text-accent-foreground font-bold">VER CATÁLOGO</Button>
+              <h3 className="text-2xl font-bold">Encontrar uma Empresa</h3>
+              <p className="text-sm text-muted-foreground text-center">Veja nossas parcerias e saiba como contatar cada empresa.</p>
+              <Button className="w-full bg-accent text-accent-foreground font-bold">VER EMPRESAS</Button>
             </div>
             <div className="bg-card p-8 rounded-2xl border border-white/5 flex flex-col items-center gap-4 flex-1">
-              <h3 className="text-2xl font-bold">Quero Construir</h3>
-              <p className="text-sm text-muted-foreground text-center">Inicie seu projeto com nossos engenheiros seniores.</p>
-              <Button className="w-full bg-white text-black font-bold">SOLICITAR ORÇAMENTO</Button>
+              <h3 className="text-2xl font-bold">Solicitar Apoio</h3>
+              <p className="text-sm text-muted-foreground text-center">Fale com nossa equipe para receber a orientação certa.</p>
+              <Button className="w-full bg-white text-black font-bold">SOLICITAR CONTATO</Button>
             </div>
           </div>
         </div>

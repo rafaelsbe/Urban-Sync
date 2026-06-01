@@ -103,6 +103,19 @@ export default function EmpresaLoginPage() {
                             </a>
                         </div>
 
+                        {/* Sign Up link */}
+                        <div className="mt-6 text-center">
+                            <p className="text-sm text-white/80">
+                                Sua empresa é nova?{" "}
+                                <Link
+                                    href="/login/empresa/signup"
+                                    className="font-semibold text-accent hover:underline underline-offset-2"
+                                >
+                                    Cadastre-se aqui
+                                </Link>
+                            </p>
+                        </div>
+
                         {/* CTA options */}
                         <div className="mt-8 sm:mt-12 lg:mt-[10rem] flex flex-col items-center gap-2 text-center">
                             <p className="text-center text-xs sm:text-sm text-white/90">
