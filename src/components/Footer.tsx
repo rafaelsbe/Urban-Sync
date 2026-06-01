@@ -18,7 +18,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Soluções integradas em engenharia civil e mercado imobiliário. Construindo o futuro com solidez, confiança e inovação tecnológica.
+              Soluções integradas em engenharia civil e parcerias empresariais. Construindo o futuro com solidez, confiança e inovação tecnológica.
             </p>
             <div className="flex items-center gap-4">
               <Link href="#" className="p-2 bg-secondary rounded-full hover:bg-accent hover:text-accent-foreground transition-all">
@@ -36,21 +36,20 @@ export function Footer() {
           <div>
             <h4 className="font-headline font-bold text-lg mb-6 border-l-4 border-accent pl-3">Links Úteis</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
-              <li><Link href="/#imoveis" className="hover:text-accent transition-colors">Imóveis à Venda</Link></li>
-              <li><Link href="/#imoveis" className="hover:text-accent transition-colors">Aluguel Residencial</Link></li>
-              <li><Link href="/#empresas" className="hover:text-accent transition-colors">Empresas Parceira</Link></li>
+              <li><Link href="/#empresas" className="hover:text-accent transition-colors">Empresas</Link></li>
               <li><Link href="/#planos" className="hover:text-accent transition-colors">Planos e Pagamentos</Link></li>
+              <li><Link href="/contato" className="hover:text-accent transition-colors">Fale Conosco</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-headline font-bold text-lg mb-6 border-l-4 border-accent pl-3">Engenharia</h4>
+            <h4 className="font-headline font-bold text-lg mb-6 border-l-4 border-accent pl-3">Serviços</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
-              <li><Link href="#" className="hover:text-accent transition-colors">Construção Civil</Link></li>
-              <li><Link href="#" className="hover:text-accent transition-colors">Reformas Estruturais</Link></li>
-              <li><Link href="#" className="hover:text-accent transition-colors">Consultoria Técnica</Link></li>
-              <li><Link href="#" className="hover:text-accent transition-colors">Laudos e Perícias</Link></li>
-              <li><Link href="#" className="hover:text-accent transition-colors">Gerenciamento de Obras</Link></li>
+              <li><Link href="#" className="hover:text-accent transition-colors">Automação de atendimento</Link></li>
+              <li><Link href="#" className="hover:text-accent transition-colors">Gestão de leads</Link></li>
+              <li><Link href="#" className="hover:text-accent transition-colors">Consultoria comercial</Link></li>
+              <li><Link href="#" className="hover:text-accent transition-colors">Treinamento de equipes</Link></li>
+              <li><Link href="#" className="hover:text-accent transition-colors">Relatórios e inteligência</Link></li>
             </ul>
           </div>
 

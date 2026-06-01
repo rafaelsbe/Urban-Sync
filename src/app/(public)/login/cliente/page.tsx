@@ -100,12 +100,25 @@ export default function EmpresaLoginPage() {
                             </a>
                         </div>
 
+                        {/* Sign Up link */}
+                        <div className="mt-6 text-center">
+                            <p className="text-sm text-white/80">
+                                Ainda não tem conta?{" "}
+                                <Link
+                                    href="/login/cliente/signup"
+                                    className="font-semibold text-accent hover:underline underline-offset-2"
+                                >
+                                    Cadastre-se aqui
+                                </Link>
+                            </p>
+                        </div>
+
                         {/* CTA options */}
                         <div className="mt-8 sm:mt-12 lg:mt-[10rem] flex flex-col items-center gap-2 text-center">
                             <p className="text-center text-xs sm:text-sm text-white/90">
                                 Você quer administrar seus imóveis? <br />
                             </p>
-                            <Link href="/login/cliente" className="block">
+                            <Link href="/login/empresa" className="block">
                                 <Button
                                     className="w-full sm:w-[220px] bg-primary hover:bg-primary/80 border border-white/10 font-bold gap-2">
                                     Área de Empresas

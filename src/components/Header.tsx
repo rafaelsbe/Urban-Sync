@@ -35,9 +35,8 @@ export function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium">
-          <Link href="#imoveis" className="hover:text-accent transition-colors">Imóveis</Link>
+          <Link href="#empresas" className="hover:text-accent transition-colors">Empresas</Link>
           <Link href="#sobre" className="hover:text-accent transition-colors">Sobre Nós</Link>
-          <Link href="#empresas" className="hover:text-accent transition-colors">Parceiros</Link>
           <Link href="#planos" className="hover:text-accent transition-colors">Planos</Link>
         </nav>
 
@@ -67,9 +66,8 @@ export function Header() {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed top-20 left-0 w-full bg-background/95 backdrop-blur-md border-b border-white/5 p-6 z-40 animate-in slide-in-from-top duration-300">
           <nav className="flex flex-col gap-4 text-base font-medium max-h-[calc(100vh-120px)] overflow-y-auto">
-            <Link href="#imoveis" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Imóveis</Link>
+            <Link href="#empresas" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Empresas</Link>
             <Link href="#sobre" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Sobre Nós</Link>
-            <Link href="#empresas" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Parceiros</Link>
             <Link href="#planos" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Planos</Link>
             <Link href="/contato" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-accent py-2 border-b border-white/5 transition-colors">Contato</Link>
             <div className="flex flex-col gap-2 pt-4">

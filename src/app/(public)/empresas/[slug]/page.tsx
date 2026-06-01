@@ -38,7 +38,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Voltar para imoveis
+                Voltar para empresas
               </Button>
             </Link>
           </div>
@@ -121,7 +121,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
         </div>
       </section>
 
-      {/* Imóveis */}
+      {/* Ofertas da empresa */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -130,11 +130,11 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 variant="outline"
                 className="mb-4 border-accent/30 px-4 py-1 font-bold uppercase tracking-widest text-accent"
               >
-                Imóveis da empresa
+                Ofertas da empresa
               </Badge>
 
               <h2 className="text-3xl font-headline font-bold md:text-4xl">
-                Conheça os imóveis da <span className="text-accent">{company.name}</span>
+                Conheça as ofertas da <span className="text-accent">{company.name}</span>
               </h2>
             </div>
           </div>
