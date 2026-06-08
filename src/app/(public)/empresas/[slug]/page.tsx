@@ -12,6 +12,7 @@ import {
   Linkedin,
   Facebook,
   ArrowLeft,
+  MessageCircle,
 } from "lucide-react"
 
 type CompanyPageProps = {
@@ -86,35 +87,49 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </div>
 
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                <Link href={company.social.instagram} target="_blank">
-                  <Button
-                    variant="outline"
-                    className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <Instagram className="mr-2 h-4 w-4" />
-                    Instagram
-                  </Button>
-                </Link>
+                <div className="hidden">
+                  <Link href={company.social.instagram} target="_blank">
+                    <Button
+                      variant="outline"
+                      className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <Instagram className="mr-2 h-4 w-4" />
+                      Instagram
+                    </Button>
+                  </Link>
+                </div>
 
-                <Link href={company.social.linkedin} target="_blank">
-                  <Button
-                    variant="outline"
-                    className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <Linkedin className="mr-2 h-4 w-4" />
-                    LinkedIn
-                  </Button>
-                </Link>
+                <div className="hidden">
+                  <Link href={company.social.linkedin} target="_blank">
+                    <Button
+                      variant="outline"
+                      className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <Linkedin className="mr-2 h-4 w-4" />
+                      LinkedIn
+                    </Button>
+                  </Link>
+                </div>
 
-                <Link href={company.social.facebook} target="_blank">
-                  <Button
-                    variant="outline"
-                    className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <Facebook className="mr-2 h-4 w-4" />
-                    Facebook
-                  </Button>
-                </Link>
+                <div className="hidden">
+                  <Link href={company.social.facebook} target="_blank">
+                    <Button
+                      variant="outline"
+                      className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <Facebook className="mr-2 h-4 w-4" />
+                      Facebook
+                    </Button>
+                  </Link>
+                </div>
+
+                <Button
+                  variant="outline"
+                  className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  WhatsApp
+                </Button>
               </div>
             </div>
           </div>
