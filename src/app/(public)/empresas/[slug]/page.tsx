@@ -86,7 +86,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </div>
 
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                <Link href={company.social.instagram} target="_blank">
+                {/* <Link href={company.social.instagram} target="_blank">
                   <Button
                     variant="outline"
                     className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
@@ -114,7 +114,20 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     <Facebook className="mr-2 h-4 w-4" />
                     Facebook
                   </Button>
-                </Link>
+                </Link> */}
+{/* 
+                <Link>
+                  <Button 
+                    variant="outline"
+                    className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground" >
+
+                      <
+                    </Button>
+                </Link> */}
+
+
+
+                
               </div>
             </div>
           </div>

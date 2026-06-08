@@ -24,8 +24,8 @@ export const whatsappOrderFlow = ai.defineFlow(
   async (input) => {
     const prompt = `Você é o assistente da UrbanSync. 
     Analise a mensagem: "${input.query}". 
-    Extraia dados do pedido imobiliário. Se for saudação, apenas responda cordialmente.
-    Se for pedido, identifique valor e local.`;
+    Extraia dados do pedido do usúario. Se for saudação, apenas responda cordialmente.
+    Se for pedido, identifique o tipo do pedido.`;
 
     const { output } = await ai.generate({
       prompt,

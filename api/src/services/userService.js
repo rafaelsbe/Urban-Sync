@@ -1,3 +1,5 @@
+import { buildings } from "@/lib/data"
+
 async function getImoveis() {
   return [
     { nome: 'Imóvel 1', preco: 100000 },
