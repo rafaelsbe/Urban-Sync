@@ -79,7 +79,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+              {/* <div className="flex flex-wrap gap-2 sm:gap-3">
                 <Link href={building.social.instagram} target="_blank">
                   <Button
                     variant="outline"
@@ -109,7 +109,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                     Facebook
                   </Button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

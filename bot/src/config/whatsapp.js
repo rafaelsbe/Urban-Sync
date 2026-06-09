@@ -1,7 +1,7 @@
 // src/config/whatsapp.js
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
-const messageHandler = require('../handlers/messageHandler');
+const messageService = require('../handler/messageService');
 
 const client = new Client({
     authStrategy: new LocalAuth(), // Mantém a sessão salva localmente
@@ -24,7 +24,7 @@ client.on('ready', () => {
 // Evento disparado a cada nova mensagem recebida
 client.on('message', async msg => {
     // Passa o cliente e a mensagem recebida para o nosso Handler gerenciar
-    await messageHandler(client, msg);
+    await messageService(client, msg);
 });
 
 module.exports = client;
