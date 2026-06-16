@@ -4,7 +4,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'UrbanSync',
-  description: 'Soluções sólidas em engenharia e os melhores imóveis para você.',
+  description: 'Soluções sólidas em engenharia e parcerias empresariais para conectar clientes às empresas certas.',
 };
 
 export default function RootLayout({

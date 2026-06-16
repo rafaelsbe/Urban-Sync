@@ -16,20 +16,20 @@ export function BuildingsSection({ id }: BuildingsSectionProps) {
         <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="max-w-2xl">
             <Badge className="mb-4 border-accent/30 px-4 py-1 font-bold uppercase tracking-widest text-accent" variant="outline">
-              Imóveis 
+              EMPRESAS 
             </Badge>
 
             <h2 className="mb-6 text-4xl font-headline font-bold md:text-5xl">
-              Imóveis <span className="italic text-accent">para todos os publicos</span>
+              Empresas <span className="italic text-accent">para todos os publicos</span>
             </h2>
 
             <p className="text-lg text-muted-foreground">
              
             </p>
           </div>
-          <Link href={'/imoveis'}>
+          <Link href={'/empresas'}>
             <Button variant="ghost" className="hidden md:flex items-center gap-2 group text-accent font-bold">
-              VER IMÓVEIS
+              VER EMPRESAS
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
@@ -77,7 +77,7 @@ export function BuildingsSection({ id }: BuildingsSectionProps) {
                       variant="outline"
                       className="w-fit border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
                     >
-                      VER IMOVEL
+                      VER EMPRESA
                     </Button>
                   </Link>
                 </div>

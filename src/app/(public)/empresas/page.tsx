@@ -18,12 +18,12 @@ export default function CompaniesPage() {
                 variant="outline"
                 className="mb-3 sm:mb-4 border-accent/30 px-3 sm:px-4 py-1 text-xs sm:text-sm font-bold uppercase tracking-widest text-accent"
               >
-                Empresas Parceiras
+                Empresas
               </Badge>
 
               <h1 className="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-headline font-bold">
-                Conheça todas as nossas{" "}
-                <span className="italic text-accent">empresas parceiras</span>
+                Conheça todas as nossas
+                <span className="italic text-accent">empresas</span>
               </h1>
 
               <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">

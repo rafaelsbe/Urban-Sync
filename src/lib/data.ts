@@ -34,7 +34,6 @@ export type Buildings = {
     instagram: string
     linkedin: string
     facebook: string
-    whatsapp: string
   }
   properties: Propertys[]
 }
@@ -58,7 +57,6 @@ export const buildings: Buildings[] = [
       instagram: "https://instagram.com/imobiliariahorizonte",
       linkedin: "https://linkedin.com/company/imobiliariahorizonte",
       facebook: "https://facebook.com/imobiliariahorizonte",
-      whatsapp: ""
     },
     properties: [
       {
@@ -133,7 +131,6 @@ export const buildings: Buildings[] = [
       instagram: "https://instagram.com/grupoatlas",
       linkedin: "https://linkedin.com/company/grupoatlas",
       facebook: "https://facebook.com/grupoatlas",
-      whatsapp: ""
     },
     properties: [
       {
@@ -207,7 +204,6 @@ export const buildings: Buildings[] = [
       instagram: "https://instagram.com/nexusrealty",
       linkedin: "https://linkedin.com/company/nexusrealty",
       facebook: "https://facebook.com/nexusrealty",
-      whatsapp: ""
     },
     properties: [
       {
@@ -286,7 +282,6 @@ export type Company = {
     instagram: string
     linkedin: string
     facebook: string
-    whatsapp: string
   }
   properties: Propertys[]
 }
@@ -313,7 +308,6 @@ export const companies: Company[] = [
       instagram: "https://instagram.com/imobiliariahorizonte",
       linkedin: "https://linkedin.com/company/imobiliariahorizonte",
       facebook: "https://facebook.com/imobiliariahorizonte",
-      whatsapp: ""
     },
     properties: [
       {
@@ -392,7 +386,6 @@ export const companies: Company[] = [
       instagram: "https://instagram.com/grupoatlas",
       linkedin: "https://linkedin.com/company/grupoatlas",
       facebook: "https://facebook.com/grupoatlas",
-      whatsapp: ""
     },
     properties: [
       {
@@ -469,7 +462,6 @@ export const companies: Company[] = [
       instagram: "https://instagram.com/nexusrealty",
       linkedin: "https://linkedin.com/company/nexusrealty",
       facebook: "https://facebook.com/nexusrealty",
-      whatsapp: ""
     },
     properties: [
       {

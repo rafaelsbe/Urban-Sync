@@ -1,4 +1,4 @@
-// SELECT ITEMS DO FORMS/FILTRO DE BUSCA DE IMÓVEIS
+// SELECT ITEMS DO FORMS/FILTRO DE BUSCA DE EMPRESAS
 
 "use client";
 
@@ -17,20 +17,20 @@ export function SearchFilters() {
             <Home className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Select>
               <SelectTrigger className="bg-secondary/50 border-white/10 pl-10 focus:ring-accent">
-                <SelectValue placeholder="Tipo de Imóvel" />
+                <SelectValue placeholder="Segmento da empresa" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="ap">Apartamento</SelectItem>
-                <SelectItem value="casa">Casa</SelectItem>
-                <SelectItem value="terreno">Terreno</SelectItem>
-                <SelectItem value="comercial">Comercial</SelectItem>
+                <SelectItem value="construcao">Construção</SelectItem>
+                <SelectItem value="tecnologia">Tecnologia</SelectItem>
+                <SelectItem value="servicos">Serviços</SelectItem>
+                <SelectItem value="comercio">Comércio</SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Onde?</label>
+          <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Região</label>
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input 
@@ -41,7 +41,7 @@ export function SearchFilters() {
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Valor máximo</label>
+          <label className="text-xs font-bold uppercase tracking-widest text-muted-foreground ml-1">Orçamento</label>
           <div className="relative">
             <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input 
@@ -54,7 +54,7 @@ export function SearchFilters() {
 
         <Button className="w-full bg-accent hover:bg-accent/80 text-accent-foreground font-bold h-10 group">
           <Search className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-          BUSCAR AGORA
+          BUSCAR EMPRESAS
         </Button>
       </div>
     </div>

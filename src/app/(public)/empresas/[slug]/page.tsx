@@ -12,7 +12,7 @@ import {
   Linkedin,
   Facebook,
   ArrowLeft,
-  MessageSquare,
+  MessageCircle,
 } from "lucide-react"
 
 type CompanyPageProps = {
@@ -39,7 +39,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Voltar para imoveis
+                Voltar para empresas
               </Button>
             </Link>
           </div>
@@ -87,57 +87,56 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </div>
 
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                {/* <Link href={company.social.instagram} target="_blank">
-                  <Button
-                    variant="outline"
-                    className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <Instagram className="mr-2 h-4 w-4" />
-                    Instagram
-                  </Button>
-                </Link>
+                <div className="hidden">
+                  <Link href={company.social.instagram} target="_blank">
+                    <Button
+                      variant="outline"
+                      className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <Instagram className="mr-2 h-4 w-4" />
+                      Instagram
+                    </Button>
+                  </Link>
+                </div>
 
-                <Link href={company.social.linkedin} target="_blank">
-                  <Button
-                    variant="outline"
-                    className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <Linkedin className="mr-2 h-4 w-4" />
-                    LinkedIn
-                  </Button>
-                </Link>
+                <div className="hidden">
+                  <Link href={company.social.linkedin} target="_blank">
+                    <Button
+                      variant="outline"
+                      className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <Linkedin className="mr-2 h-4 w-4" />
+                      LinkedIn
+                    </Button>
+                  </Link>
+                </div>
 
-                <Link href={company.social.facebook} target="_blank">
-                  <Button
-                    variant="outline"
-                    className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <Facebook className="mr-2 h-4 w-4" />
-                    Facebook
-                  </Button>
-                </Link> */}
+                <div className="hidden">
+                  <Link href={company.social.facebook} target="_blank">
+                    <Button
+                      variant="outline"
+                      className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                    >
+                      <Facebook className="mr-2 h-4 w-4" />
+                      Facebook
+                    </Button>
+                  </Link>
+                </div>
 
-                <Link href={`https://wa.me/${company.social.whatsapp}`} target="_blank"
-                rel="noopener noreferrer">
-                  <Button
-                    variant="outline"
-                    className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <MessageSquare className="mr-2 h-4 w-4" />
-                    WhatsApp
-                  </Button>
-                </Link>
-
-
-
-
+                <Button
+                  variant="outline"
+                  className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  WhatsApp
+                </Button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Imóveis */}
+      {/* Ofertas da empresa */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -146,11 +145,11 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                 variant="outline"
                 className="mb-4 border-accent/30 px-4 py-1 font-bold uppercase tracking-widest text-accent"
               >
-                Imóveis da empresa
+                Ofertas da empresa
               </Badge>
 
               <h2 className="text-3xl font-headline font-bold md:text-4xl">
-                Conheça os imóveis da <span className="text-accent">{company.name}</span>
+                Conheça as ofertas da <span className="text-accent">{company.name}</span>
               </h2>
             </div>
           </div>
@@ -211,6 +210,6 @@ export default function CompanyPage({ params }: CompanyPageProps) {
           )}
         </div>
       </section>
-    </main >
+    </main>
   )
 }
