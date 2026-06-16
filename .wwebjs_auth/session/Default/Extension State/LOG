@@ -1,3 +1,2 @@
-2026/06/09-09:16:15.655 448c Reusing MANIFEST C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Extension State/MANIFEST-000001
-2026/06/09-09:16:15.655 448c Recovering log #3
-2026/06/09-09:16:15.656 448c Reusing old log C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Extension State/000003.log 
+2026/06/16-10:28:22.381 601c Creating DB C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Extension State since it was missing.
+2026/06/16-10:28:22.398 601c Reusing MANIFEST C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Extension State/MANIFEST-000001

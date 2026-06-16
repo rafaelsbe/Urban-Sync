@@ -13,6 +13,7 @@ import {
   Facebook,
   ArrowLeft,
   MessageCircle,
+  MessageSquare
 } from "lucide-react"
 
 type CompanyPageProps = {
@@ -87,7 +88,7 @@ export default function CompanyPage({ params }: CompanyPageProps) {
               </div>
 
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                <div className="hidden">
+                {/* <div className="hidden">
                   <Link href={company.social.instagram} target="_blank">
                     <Button
                       variant="outline"
@@ -121,15 +122,18 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                       Facebook
                     </Button>
                   </Link>
-                </div>
+                </div> */}
 
-                <Button
-                  variant="outline"
-                  className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
-                >
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  WhatsApp
-                </Button>
+                <Link href={`https://wa.me/${company.social.whatsapp}`} target="_blank"
+                  rel="noopener noreferrer">
+                  <Button
+                    variant="outline"
+                    className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    WhatsApp
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

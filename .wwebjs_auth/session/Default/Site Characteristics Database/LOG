@@ -1,3 +1,2 @@
-2026/06/09-09:16:15.527 3df8 Reusing MANIFEST C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Site Characteristics Database/MANIFEST-000001
-2026/06/09-09:16:15.528 3df8 Recovering log #3
-2026/06/09-09:16:15.528 3df8 Reusing old log C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Site Characteristics Database/000003.log 
+2026/06/16-10:28:22.241 80c Creating DB C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Site Characteristics Database since it was missing.
+2026/06/16-10:28:22.324 80c Reusing MANIFEST C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Site Characteristics Database/MANIFEST-000001

@@ -1,7 +1,7 @@
 // PÁGINA PRINCIPAL / HOME DA LANDING PAGE
 
 import Image from "next/image";
-import Link  from "next/link";
+import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SearchFilters } from "@/components/SearchFilters";
@@ -56,42 +56,42 @@ export default function Home() {
           className="object-cover brightness-[0.3]"
           data-ai-hint="modern city skyline"
         />
-        
+
         {/* Gradient Overlay */}
         <div className="gradient-overlay" />
-        
+
         <div className="container mx-auto px-4 relative z-10 text-center space-y-8">
           <div className="hero-badge">
             <Badge className="bg-accent/20 text-accent border-accent/40 font-bold tracking-[0.2em] uppercase px-6 py-2 backdrop-blur-sm hover:bg-accent/30 transition-colors duration-300">
               Intermediação & Empresas
             </Badge>
           </div>
-          
+
           <div className="hero-title">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-bold leading-tight max-w-5xl mx-auto">
               Solidez que <span className="text-accent italic">conecta</span> pessoas às empresas certas.
             </h1>
           </div>
-          
+
           <div className="hero-subtitle">
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               A UrbanSync conecta clientes a empresas com atendimento estratégico, orientação e direcionamento assertivo. Encontre a empresa ideal e saiba como falar com ela rapidamente.
             </p>
           </div>
-          
+
           <div className="hero-buttons flex flex-wrap justify-center gap-4">
             <Link href="/empresas">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-accent hover:bg-accent/80 text-accent-foreground font-bold h-14 px-10 text-lg rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-accent/50 active:scale-95"
               >
                 VER EMPRESAS
                 <ChevronRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
-            <Button 
-              size="lg" 
-              variant="outline" 
+            <Button
+              size="lg"
+              variant="outline"
               className="border-white/20 hover:bg-white/10 font-bold h-14 px-10 text-lg rounded-full transition-all duration-300 hover:scale-105 hover:border-white/40 active:scale-95"
             >
               FALAR COM NOSSAS EQUIPES
@@ -112,8 +112,8 @@ export default function Home() {
       <section id="imoveis" className="py-24 container mx-auto px-4">
 
 
-
-        <BuildingsSection id="imoveis" />
+        {/* Comentei para remover essa opção de mostrar outra aba de epresas */}
+        {/* <BuildingsSection id="imoveis" /> */}
 
       </section>
 
@@ -122,7 +122,7 @@ export default function Home() {
       <section id="sobre" className="py-24 bg-card relative overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-transparent pointer-events-none" />
-        
+
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
           <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl group">
             <Image
@@ -189,7 +189,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-accent/5 opacity-50 pointer-events-none" />
         <div className="absolute top-10 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none animate-float" style={{ animationDelay: '0s' }} />
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none animate-float" style={{ animationDelay: '1s' }} />
-        
+
         <div className="container mx-auto px-4 relative z-10 text-center max-w-4xl">
           <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8 italic animate-in fade-in slide-in-from-top duration-700">Pronto para dar o próximo passo?</h2>
           <p className="text-xl text-muted-foreground mb-12 animate-in fade-in slide-in-from-top duration-700 delay-100">

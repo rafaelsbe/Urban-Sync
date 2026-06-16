@@ -1,3 +1,2 @@
-2026/06/09-09:16:15.524 3598 Reusing MANIFEST C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Sync Data\LevelDB/MANIFEST-000001
-2026/06/09-09:16:15.527 3598 Recovering log #3
-2026/06/09-09:16:15.527 3598 Reusing old log C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Sync Data\LevelDB/000003.log 
+2026/06/16-10:28:22.231 5f7c Creating DB C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Sync Data\LevelDB since it was missing.
+2026/06/16-10:28:22.241 5f7c Reusing MANIFEST C:\Users\jvsgois\Urban-Sync\.wwebjs_auth\session\Default\Sync Data\LevelDB/MANIFEST-000001
