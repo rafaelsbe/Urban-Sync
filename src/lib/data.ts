@@ -313,7 +313,7 @@ export const companies: Company[] = [
       instagram: "https://instagram.com/imobiliariahorizonte",
       linkedin: "https://linkedin.com/company/imobiliariahorizonte",
       facebook: "https://facebook.com/imobiliariahorizonte",
-      whatsapp: "5579998024104"
+      whatsapp: "YOUR NUMB"
     },
     properties: [
       {
