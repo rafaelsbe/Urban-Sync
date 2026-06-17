@@ -1,6 +1,0 @@
-2026/05/07-08:15:38.173 67b8 Reusing MANIFEST C:\Users\jvsgois\Urban-Sync\bot\.wwebjs_auth\session\Default\Local Storage\leveldb/MANIFEST-000001
-2026/05/07-08:15:38.178 67b8 Recovering log #22
-2026/05/07-08:15:38.181 67b8 Reusing old log C:\Users\jvsgois\Urban-Sync\bot\.wwebjs_auth\session\Default\Local Storage\leveldb/000022.log 
-2026/05/07-10:15:51.544 67b8 Level-0 table #26: started
-2026/05/07-10:15:51.552 67b8 Level-0 table #26: 15198 bytes OK
-2026/05/07-10:15:51.555 67b8 Delete type=0 #22

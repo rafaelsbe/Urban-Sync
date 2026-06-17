@@ -1,6 +1,7 @@
 // src/handlers/messageHandler.js
 const messages = require('../templates/messages');
-// const leadService = require('../services/leadService');
+const leadService = require('../services/leadService');
+
 const { resolve } = require('path');
 
 module.exports = async (client, msg) => {
@@ -15,6 +16,8 @@ module.exports = async (client, msg) => {
 
           // // Salva o lead no banco de dados de forma assíncrona
           // await leadService.saveNewLead(msg.from);
+
+          await leadService.saveNewLead(msg.from);
           
           await client.sendMessage(msg.from, messages.welcomeMessage);
 
