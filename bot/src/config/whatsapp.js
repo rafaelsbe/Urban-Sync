@@ -4,7 +4,9 @@ const qrcode = require('qrcode-terminal');
 const messageService = require('../handler/messageService');
 
 const client = new Client({
-    authStrategy: new LocalAuth(), // Mantém a sessão salva localmente
+    authStrategy: new LocalAuth({
+        clientId: "client-one" //Define um ID fixo para o cliente da sessão
+    }), // Mantém a sessão salva localmente
     puppeteer: {
         args: ['--no-sandbox'] // Evita problemas de permissão em servidores Linux/Docker
     }

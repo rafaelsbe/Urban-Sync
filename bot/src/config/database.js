@@ -1,4 +1,4 @@
-const { createrClient } = require("@supabase/ssr");
+const { createClient } = require("@supabase/supabase-js");
 require('dotenv').config();
 
 const supabaseUrl = process.env.PUBLIC_SUPABASE_URL;
@@ -10,6 +10,6 @@ if (!supabaseUrl || !supabaseKey) {
     process.exit(1);
 }
 
-const supabase = createrClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 module.exports = supabase;
