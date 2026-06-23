@@ -1,14 +1,13 @@
-// src/config/whatsapp.js
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const messageService = require('../handler/messageService');
 
 const client = new Client({
     authStrategy: new LocalAuth({
-        clientId: "client-one" //Define um ID fixo para o cliente da sessão
-    }), // Mantém a sessão salva localmente
+        clientId: "client-one" 
+    }), 
     puppeteer: {
-        args: ['--no-sandbox'] // Evita problemas de permissão em servidores Linux/Docker
+        args: ['--no-sandbox'] 
     }
 });
 
@@ -23,97 +22,20 @@ client.on('ready', () => {
     console.log('Chatbot conectado com sucesso e pronto para operar!');
 });
 
-// Evento disparado a cada nova mensagem recebida
-client.on('message', async msg => {
-    // Passa o cliente e a mensagem recebida para o nosso Handler gerenciar
-    await messageService(client, msg);
+// Mudei para 'message_create' para capturar meus testes próprios também
+client.on('message_create', async msg => {
+    // LOG DE TESTE: Se isso aparecer no terminal, o gatilho está funcionando!
+    console.log(`[GATILHO] Mensagem recebida de ${msg.from}: "${msg.body}"`);
+    
+    try {
+        // Passa o cliente e a mensagem recebida para o nosso Handler gerenciar
+        await messageService(client, msg);
+    } catch (error) {
+        console.error('Erro dentro do messageService:', error);
+    }
 });
 
-module.exports = client;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// require('dotenv').config();
-
-// const { Client, LocalAuth } = require('whatsapp-web.js');
-// const qrcode = require('qrcode-terminal');
-
-// const client = new Client({
-//   authStrategy: new LocalAuth(),
-//   puppeteer: {
-//     headless: true,
-//     args: ['--no-sandbox']
-//   }
-// });
-
-// client.on('qr', qr => {
-//   qrcode.generate(qr, { small: true });
-// });
-
-// client.on('ready', async () => {
-//   console.log('✅ Bot conectado!');
-
-// //   try {
-// //     const number = process.env.TEST_NUMBER;
-// //     // await client.sendMessage(number, "Bot iniciado");
-// //     await safeSend(client, number, "Bot iniciado");
-// //   } catch (err) {
-// //     console.error('Erro ao enviar mensagem:', err)
-// //   }
-// });
-
-// client.on('message', async msg => {
-//   // const TEST_MODE = process.env.TEST_MODE === 'true';
-//   // const TEST_NUMBER = process.env.TEST_NUMBER;
-
-//   // 🚫 bloqueia mensagens de outros usuários
-//   // if (TEST_MODE && msg.from !== TEST_NUMBER) {
-//   //   console.log('🚫 Ignorando usuário fora do teste:', msg.from);
-//   //   return;
-//   // }
-//   const initialMessage = msg.sendMessage();
-
-//   //Verifica se a mensagem foi recebida após clicar no botão
-//   if (msg.body === initialMessage) {
-//     const chat = await msg.getChat();
-//     await client.sendMessage(msg.from, 'Bem-vindo à nossa empresa! 🚀\n\nSou o assistente virtual. Como posso te ajudar hoje?')
-
-//     //Marca a mensagem como "Lida"
-//     await chat.sendSeen();
-//   }
-//   try {
-//     await handleMessage(client, msg);
-//   } catch {
-//     console.error('Erro ao processar mensagem:', err);
-//   }
-// });
-
+// // ADICIONADO: Inicializa o cliente para o Puppeteer rodar
 // client.initialize();
+
+module.exports = client;

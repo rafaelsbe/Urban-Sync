@@ -18,16 +18,16 @@ module.exports = async (client, msg) => {
           console.log('Recebendo gatilho...')
 
           await chat.sendStateTyping();
-          await new Promise(resolve => setTimeout, 2000);
+          await new Promise(resolve => setTimeout(resolve, 2000));
 
-          // // Salva o lead no banco de dados de forma assíncrona
+          // Salva o lead no banco de dados de forma assíncrona
           await leadService.saveNewLead(msg.from);
           
           await client.sendMessage(msg.from, messages.welcomeMessage);
 
           console.log('Mensagem enviada!')
 
-        } catch {
+        } catch (err) {
           console.error('Erro ao processar mensagem:', err);
           await client.sendMessage(msg.from, messages.welcomeMessage);
         }
