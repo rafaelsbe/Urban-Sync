@@ -1,6 +1,7 @@
 // src/handlers/messageHandler.js
 const messages = require('../templates/messages');
 const leadService = require('../services/leadService');
+const supabase = require('../config/database')
 
 const { resolve } = require('path');
 

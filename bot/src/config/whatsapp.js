@@ -24,8 +24,6 @@ client.on('ready', () => {
 
 // Mudei para 'message_create' para capturar meus testes próprios também
 client.on('message_create', async msg => {
-    // LOG DE TESTE: Se isso aparecer no terminal, o gatilho está funcionando!
-    console.log(`[GATILHO] Mensagem recebida de ${msg.from}: "${msg.body}"`);
     
     try {
         // Passa o cliente e a mensagem recebida para o nosso Handler gerenciar
