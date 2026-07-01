@@ -1,10 +1,10 @@
-const { error } = require("console");
+// src/services/leadService.js
 const supabase = require("../config/database");
 
 module.exports = {
     async saveNewLead(phone) {
         try {
-            //Limpa o formao do numero '@c.us'
+            // Limpa o formato do número '@c.us'
             const cleanPhone = phone.replace('@c.us', '');
 
             const { data: existingLead, error: searchError } = await supabase
@@ -13,18 +13,18 @@ module.exports = {
                 .eq('phone', cleanPhone)
                 .single();
 
-            //Caso o usuario nao for encontrado
+            // Caso o usuário não for encontrado (PGRST116 é aceitável, significa que é um lead novo)
             if (searchError && searchError.code !== 'PGRST116') {
                 throw searchError;
             }
 
-            //Se o usuario existir no banco
+            // Se o usuário existir no banco
             if (existingLead) {
-                console.log('Lead ${cleanPhone} já existe no banco de dados.');
+                console.log(`Lead ${cleanPhone} já existe no banco de dados.`);
                 return existingLead;
             }
 
-            //Adiciona um nove usuario no banco caso não exista
+            // Adiciona um novo usuário no banco caso não exista
             const { data: newLead, error: insertError } = await supabase
                 .from('leads')
                 .insert([{ phone: cleanPhone, status: 'novo' }])
@@ -35,14 +35,13 @@ module.exports = {
                 throw insertError;
             }
 
-            console.log('Lead ${cleanPhone} já existe no banco de dados.');
-            return existingLead;
+            console.log(`Novo lead salvo com sucesso: ${cleanPhone}`);
+            return newLead; // CORRIGIDO: Retornando o lead que acabou de ser criado
 
-        } catch {
-            //Caso o consiga salvar o lead no banco
-            console.error('Erro ao salvar lead no Supabase:', error.message);
-            throw error;
+        } catch (err) { // Alterado para 'err' para evitar qualquer conflito com o console
+            // Caso não consiga salvar o lead no banco
+            console.error('Erro interno no leadService:', err.message || err);
+            throw err;
         }
-
     }
 };

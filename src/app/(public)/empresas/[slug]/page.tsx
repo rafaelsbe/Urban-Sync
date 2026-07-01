@@ -124,8 +124,11 @@ export default function CompanyPage({ params }: CompanyPageProps) {
                   </Link>
                 </div> */}
 
-                <Link href={`https://wa.me/${company.social.whatsapp}`} target="_blank"
-                  rel="noopener noreferrer">
+                <Link
+                  href={`https://wa.me/${company.social.whatsapp}?text=${encodeURIComponent('Olá! Vim pelo site e gostaria de saber mais sobre!')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Button
                     variant="outline"
                     className="border-accent/20 font-bold transition-all hover:bg-accent hover:text-accent-foreground"
