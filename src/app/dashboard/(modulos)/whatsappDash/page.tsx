@@ -26,6 +26,32 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
+// type connectionState = "open" | "connecting" | "close" | "loading";
+
+
+// //Fluxo de coneção d whatsapp com o QRcode
+//   async function handleConnect() {
+//     setLoadingQr(true);
+//     setQrBase64(null);
+//     try {
+//       const { data } = await api.get("/whatsapp/qrcode", { timeout: 30000 });
+//       setQrBase64(data.base64);
+//       setState("connecting");
+//     } catch (err: any) {
+//       const detail = err?.response?.data?.detail ?? "";
+//       if (detail === "already_connected") {
+//         setState("open");
+//         toast.success("WhatsApp já está conectado.");
+//       } else {
+//         toast.error(detail || "Erro ao gerar QR Code. Tente novamente.");
+//       }
+//     } finally {
+//       setLoadingQr(false);
+//     }
+//   }
+
+
+
 // 1. Definição da interface para evitar erros de tipagem do TypeScript
 interface Lead {
   id: string;

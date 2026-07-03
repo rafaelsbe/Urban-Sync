@@ -1,49 +1,71 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
-const qrcode = require('qrcode-terminal');
+const qrcodeTerminal = require('qrcode-terminal');
+const qrcodeImage = require('qrcode')
+
 const messageService = require('../handler/messageHandler.js');
 
 const client = new Client({
-    authStrategy: new LocalAuth(),
+    authStrategy: new LocalAuth({
+        clientId: "client-one" //Define um ID fixo para o cliente da sessão
+    }), // Mantém a sessão salva localmente
     puppeteer: {
-        // Isso dá mais tempo para o Puppeteer esperar a resposta do navegador (padrão é 180000)
-        protocolTimeout: 300000, 
-        headless: true, // Defina como false se quiser ver o navegador abrindo para testar
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--disable-dev-shm-usage',
-            '--disable-accelerated-2d-canvas',
-            '--no-first-run',
-            '--no-zygote',
-            '--single-process', // Ajuda a economizar memória em PCs mais modestos
-            '--disable-gpu'
-        ],
+        args: ['--no-sandbox'] // Evita problemas de permissão em servidores Linux/Docker
     }
 });
 
-// Evento para gerar o QR Code no terminal
-client.on('qr', qr => {
-    qrcode.generate(qr, { small: true });
-    console.log('Escaneie o QR Code acima para conectar o WhatsApp.');
-});
 
-// Evento de confirmação de conexão
-client.on('ready', () => {
-    console.log('Chatbot conectado com sucesso e pronto para operar!');
-});
+const initWhatsappDashboard = (io) => {
 
-// Mudei para 'message_create' para capturar meus testes próprios também
-client.on('message_create', async msg => {
-    
-    try {
-        // Passa o cliente e a mensagem recebida para o nosso Handler gerenciar
-        await messageService(client, msg);
-    } catch (error) {
-        console.error('Erro dentro do messageService:', error);
-    }
-});
+    io.on('connection', (socket) => {
+        console.log('Dashboard conectado via Socket:', socket.id);
 
-// // ADICIONADO: Inicializa o cliente para o Puppeteer rodar
-// client.initialize();
+        //Verifica se já está conectado no whatsapp e pula a fase de gerar o qrcode
+        client.getState().then(state => {
+            if (state === 'CONNECTED') {
+                socket.emit('status', 'ready')
+            };
+        }).catch(() =>
+            socket.emit('status', 'disconnected')
+        );
+    });
+};
 
-module.exports = client;
+
+    // Evento para gerar o QR Code no terminal
+    client.on('ready', ( )=> {
+        qrcode.generate(qr, { small: true });
+        console.log('Conctado ao WhatsApp.');
+        io.emit('status' ,'connected');
+    });
+
+    // Evento caso o whatsaoo esteja desconectado
+    client.on('disconnected', () => {
+        console.log('WhatsApp desconectado');
+        io.emit('status' ,'disconnected');
+    });
+
+
+    // Mudei para 'message_create' para capturar meus testes próprios também
+    client.on('message_create', async msg => {
+
+        try {
+            // Passa o cliente e a mensagem recebida para o nosso Handler gerenciar
+            await messageService(client, msg);
+        } catch (error) {
+            console.error('Erro dentro do messageService:', error);
+        }
+    });
+
+console.log('🔄 Inicializando os módulos do sistema...');
+
+// Inicializa o bot do WhatsApp
+client.initialize();
+
+
+// // Evento de confirmação de conexão
+// client.on('ready', () => {
+//     console.log('Chatbot conectado com sucesso e pronto para operar!');
+// });
+
+
+module.exports = {client, initWhatsappDashboard};
