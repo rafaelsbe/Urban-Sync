@@ -1,10 +1,15 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import {
   Activity,
   BadgeDollarSign,
   Building2,
   Target,
+  User,
+  CheckCircle2,
+  Clock,
+  MessageSquare
 } from "lucide-react"
 import {
   Bar,
@@ -18,6 +23,7 @@ import {
   XAxis,
 } from "recharts"
 
+import { supabase } from "@/lib/supabase" // ⬅️ IMPORTANTE: Ajuste o caminho para o seu cliente do Supabase
 import { SectionHeader } from "@/app/dashboard/components/ui/section-header"
 import { StatCard } from "@/app/dashboard/components/ui/stat-card"
 import {
@@ -49,17 +55,11 @@ import {
 import Link from "next/link"
 
 const lineChartConfig = {
-  revenue: {
-    label: "Receita",
-    color: "#54B4CE",
-  },
+  revenue: { label: "Receita", color: "#54B4CE" },
 }
 
 const barChartConfig = {
-  sales: {
-    label: "Vendas",
-    color: "#283766",
-  },
+  sales: { label: "Vendas", color: "#283766" },
 }
 
 const pieChartConfig = {
@@ -69,6 +69,88 @@ const pieChartConfig = {
 }
 
 export default function DashboardHomePage() {
+  const [leads, setLeads] = useState<Lead[]>([])
+  const [loading, setLoading] = useState(true)
+
+  interface Lead {
+    id: string; // ou number, dependendo de como está no Supabase
+    phone: string;
+    name: string | null;
+    service: string | null;
+    current_step: string | null;
+    status: string;
+    created_at?: string;
+  }
+
+  // 1. CARREGA OS LEADS DO SUPABASE E ESCUTA EM TEMPO REAL (REALTIME)
+  useEffect(() => {
+    async function fetchLeads() {
+      try {
+        const { data, error } = await supabase
+          .from("leads")
+          .select("*")
+          .order("created_at", { ascending: false })
+
+        if (!error && data) setLeads(data)
+      } catch (err) {
+        console.error("Erro ao buscar leads no dashboard:", err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchLeads()
+
+    // Inscreve no canal Realtime do Supabase para escutar inserções e atualizações automáticas do Bot
+    const channel = supabase
+      .channel("realtime-leads-dashboard")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "leads" },
+        (payload) => {
+          if (payload.eventType === "INSERT") {
+
+            // Adicionado 'as Lead' para o TypeScript aceitar o novo registro na lista
+            setLeads((prev) => [payload.new as Lead, ...prev])
+          } else if (payload.eventType === "UPDATE") {
+            setLeads((prev) =>
+
+              // Adicionado 'as Lead' no payload.new
+              prev.map((item) => (item.id === (payload.new as Lead).id ? (payload.new as Lead) : item))
+            )
+          } else if (payload.eventType === "DELETE") {
+            setLeads((prev) =>
+              
+              // Adicionado 'as Lead' no payload.old para conseguir ler a propriedade .id sem erros
+              prev.filter((item) => item.id !== (payload.old as Lead).id)
+            )
+          }
+        }
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [])
+
+  // 2. FUNÇÃO PARA ATUALIZAR STATUS PELO PAINEL (Ex: Mover para em atendimento ou concluído)
+  const handleUpdateStatus = async (phone: string, nextStatus: string) => {
+    try {
+      await supabase
+        .from("leads")
+        .update({ status: nextStatus })
+        .eq("phone", phone)
+    } catch (err) {
+      console.error("Erro ao atualizar status do lead:", err)
+    }
+  }
+
+  // Filtra as listas locais para alimentar as colunas do CRM
+  const leadsAbertos = leads.filter((l) => l.status === "aberto" || !l.status)
+  const leadsEmAtendimento = leads.filter((l) => l.status === "em atendimento")
+  const leadsConcluidos = leads.filter((l) => l.status === "concluido")
+
   return (
     <div className="space-y-8">
       <SectionHeader
@@ -84,6 +166,7 @@ export default function DashboardHomePage() {
         }
       />
 
+      {/* Indicadores Principais */}
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <StatCard
           title="Receita mensal"
@@ -115,6 +198,115 @@ export default function DashboardHomePage() {
         />
       </div>
 
+      {/* --- SEÇÃO KANBAN DE ATENDIMENTOS DO BOT EM TEMPO REAL --- */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <MessageSquare className="h-5 w-5 text-accent" /> Gestão de clientes
+          </h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {/* COLUNA: ABERTO / COLETANDO DADOS */}
+          <Card className="border-white/10 bg-card/40 backdrop-blur-sm">
+            <CardHeader className="pb-3 border-b border-white/5 flex flex-row items-center justify-between space-y-0">
+              <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                <Clock className="h-4 w-4 text-amber-400" /> Coleta/Aberto
+              </CardTitle>
+              <Badge className="bg-amber-400/10 text-amber-300 border-none">{leadsAbertos.length}</Badge>
+            </CardHeader>
+            <CardContent className="pt-4 space-y-3 max-h-[400px] overflow-y-auto">
+              {loading ? (
+                <div className="text-sm text-muted-foreground text-center py-4">Carregando leads...</div>
+              ) : leadsAbertos.length === 0 ? (
+                <div className="text-sm text-muted-foreground text-center py-4">Nenhum lead nesta etapa.</div>
+              ) : (
+                leadsAbertos.map((lead) => (
+                  <div key={lead.id} className="rounded-xl border border-white/10 bg-background/60 p-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono text-muted-foreground">+{lead.phone}</span>
+                      <Badge className="bg-white/5 text-white text-[10px] border-none capitalize">{lead.current_step?.replace('_', ' ')}</Badge>
+                    </div>
+                    <div className="text-sm font-medium text-white flex items-center gap-1.5">
+                      <User className="h-3.5 w-3.5 text-accent" /> {lead.name || "Aguardando nome..."}
+                    </div>
+                    <div className="text-xs text-muted-foreground truncate">
+                      <span className="font-medium text-white/70">Busca:</span> {lead.service || "Aguardando..."}
+                    </div>
+                    <Button
+                      size="sm"
+                      className="w-full text-xs h-7 bg-accent/20 text-accent hover:bg-accent/30 mt-1"
+                      onClick={() => handleUpdateStatus(lead.phone, 'em atendimento')}
+                    >
+                      Assumir Atendimento
+                    </Button>
+                  </div>
+                ))
+              )}
+            </CardContent>
+          </Card>
+
+          {/* COLUNA: EM ATENDIMENTO */}
+          <Card className="border-white/10 bg-card/40 backdrop-blur-sm">
+            <CardHeader className="pb-3 border-b border-white/5 flex flex-row items-center justify-between space-y-0">
+              <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                <Activity className="h-4 w-4 text-accent" /> Em Atendimento
+              </CardTitle>
+              <Badge className="bg-accent/10 text-accent border-none">{leadsEmAtendimento.length}</Badge>
+            </CardHeader>
+            <CardContent className="pt-4 space-y-3 max-h-[400px] overflow-y-auto">
+              {leadsEmAtendimento.length === 0 ? (
+                <div className="text-sm text-muted-foreground text-center py-4">Nenhum operador atendendo.</div>
+              ) : (
+                leadsEmAtendimento.map((lead) => (
+                  <div key={lead.id} className="rounded-xl border border-white/10 bg-background/60 p-3 space-y-2 border-l-2 border-l-accent">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono text-muted-foreground">+{lead.phone}</span>
+                    </div>
+                    <div className="text-sm font-semibold text-white">{lead.name}</div>
+                    <div className="text-xs text-muted-foreground bg-white/5 p-1.5 rounded-md">
+                      <span className="font-semibold text-accent">Serviço:</span> {lead.service}
+                    </div>
+                    <Button
+                      size="sm"
+                      className="w-full text-xs h-7 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 mt-1"
+                      onClick={() => handleUpdateStatus(lead.phone, 'concluido')}
+                    >
+                      Marcar Concluído
+                    </Button>
+                  </div>
+                ))
+              )}
+            </CardContent>
+          </Card>
+
+          {/* COLUNA: CONCLUÍDO */}
+          <Card className="border-white/10 bg-card/40 backdrop-blur-sm">
+            <CardHeader className="pb-3 border-b border-white/5 flex flex-row items-center justify-between space-y-0">
+              <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-emerald-400" /> Concluído
+              </CardTitle>
+              <Badge className="bg-emerald-400/10 text-emerald-300 border-none">{leadsConcluidos.length}</Badge>
+            </CardHeader>
+            <CardContent className="pt-4 space-y-3 max-h-[400px] overflow-y-auto">
+              {leadsConcluidos.length === 0 ? (
+                <div className="text-sm text-muted-foreground text-center py-4">Nenhum lead finalizado hoje.</div>
+              ) : (
+                leadsConcluidos.map((lead) => (
+                  <div key={lead.id} className="rounded-xl border border-white/5 bg-background/20 p-3 opacity-70">
+                    <div className="text-xs font-mono text-muted-foreground">+{lead.phone}</div>
+                    <div className="text-sm font-medium line-through text-muted-foreground">{lead.name}</div>
+                    <div className="text-xs italic text-muted-foreground truncate">{lead.service}</div>
+                  </div>
+                ))
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      {/* --- FIM DA SEÇÃO KANBAN --- */}
+
+      {/* Gráficos */}
       <div className="grid gap-6 xl:grid-cols-[1.5fr_1fr]">
         <Card className="border-white/10 bg-card/80">
           <CardHeader>
@@ -164,7 +356,7 @@ export default function DashboardHomePage() {
                   paddingAngle={4}
                 >
                   {salesByChannel.map((entry) => (
-                  <Cell key={entry.name} fill={entry.fill} />
+                    <Cell key={entry.name} fill={entry.fill} />
                   ))}
                 </Pie>
               </PieChart>

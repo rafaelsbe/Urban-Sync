@@ -7,6 +7,7 @@ import {
   Building2,
   CreditCard,
   LayoutDashboard,
+  MessageSquare,
   Plus,
   Settings,
 } from "lucide-react"
@@ -30,6 +31,7 @@ const mainItems = [
   { title: "Visao geral", href: "/dashboard/home", icon: LayoutDashboard },
   { title: "Empresas", href: "/dashboard/empresas", icon: Building2 },
   { title: "Vendas", href: "/dashboard/vendas", icon: CreditCard },
+  { title: "WhatsApp Painel", href: "/dashboard/whatsappDash", icon: MessageSquare },
   { title: "Configuracoes", href: "/dashboard/configuracoes", icon: Settings },
 ]
 

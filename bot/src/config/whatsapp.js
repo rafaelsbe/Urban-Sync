@@ -3,11 +3,21 @@ const qrcode = require('qrcode-terminal');
 const messageService = require('../handler/messageHandler.js');
 
 const client = new Client({
-    authStrategy: new LocalAuth({
-        clientId: "client-one" 
-    }), 
+    authStrategy: new LocalAuth(),
     puppeteer: {
-        args: ['--no-sandbox'] 
+        // Isso dá mais tempo para o Puppeteer esperar a resposta do navegador (padrão é 180000)
+        protocolTimeout: 300000, 
+        headless: true, // Defina como false se quiser ver o navegador abrindo para testar
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--single-process', // Ajuda a economizar memória em PCs mais modestos
+            '--disable-gpu'
+        ],
     }
 });
 
