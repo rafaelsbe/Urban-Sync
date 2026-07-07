@@ -3,7 +3,7 @@ const supabase = require("../config/database");
 
 module.exports = {
 
-    async getNewLead(phone) {
+    async getNewLead(phone, companyId) {
         try {
             // Limpa o formato do número '@c.us'
             const cleanPhone = phone.replace('@c.us', '');
@@ -12,62 +12,66 @@ module.exports = {
                 .from('leads')
                 .select('current_step', 'status')
                 .eq('phone', cleanPhone)
-                .maybesingle();  //maybeSingle para não estourar erro caso não exista
+                .eq('company_id', companyId) // Isola a busca por parceiro
+                .maybeSingle(); // maybeSingle para não estourar erro caso não exista
 
-            if (error)
-                throw error;
-            return data; // Retorna os dados do lead encontrado
+            if (error) throw error;
+            return data; 
         } catch (err) {
             console.error('Erro ao buscar lead no banco de dados:', err.message || err);
             throw err;
         }
     },
 
-    async saveNewLead(phone) {
+    async saveNewLead(phone, companyId) {
         try {
-            // Limpa o formato do número '@c.us'
             const cleanPhone = phone.replace('@c.us', '');
 
             const { data: existingLead, error: searchError } = await supabase
                 .from('leads')
                 .select('id')
                 .eq('phone', cleanPhone)
-                .maybesingle();
+                .eq('company_id', companyId)
+                .maybeSingle();
 
-            // Caso o usuário não for encontrado (PGRST116 é aceitável, significa que é um lead novo)
             if (searchError && searchError.code !== 'PGRST116') {
                 throw searchError;
             }
 
-            // Se o usuário existir no banco adicionamos um fluxo inicial
+            // Se o usuário existir na base dessa empresa, reinicia o fluxo do bot
             if (existingLead) {
-                await this.updateLead(phone, { current_step: 'aguardando_nome', status: 'aberto' });
+                await this.updateLead(phone, companyId, { 
+                    current_step: 'aguardando_nome', 
+                    status: 'aberto' 
+                });
                 return existingLead;
             }
 
-            // Adiciona um novo usuário no banco caso não exista
+            // CORRIGIDO: Agora injeta ativamente o company_id no INSERT do novo lead
             const { data: newLead, error: insertError } = await supabase
                 .from('leads')
-                .insert([{ phone: cleanPhone, status: 'aberto', current_step: 'aguardando_nome' }])
+                .insert([{ 
+                    phone: cleanPhone, 
+                    company_id: companyId, // Vincula o lead à empresa dona deste bot
+                    status: 'aberto', 
+                    current_step: 'aguardando_nome' 
+                }])
                 .select()
-                .maybesingle();
+                .maybeSingle();
 
-            if (insertError) {
-                throw insertError;
-            }
+            if (insertError) throw insertError;
 
-            console.log(`Novo lead salvo com sucesso: ${cleanPhone}`);
-            return newLead; // CORRIGIDO: Retornando o lead que acabou de ser criado
+            console.log(`[Empresa: ${companyId}] Novo lead salvo com sucesso: ${cleanPhone}`);
+            return newLead;
 
-        } catch (err) { // Alterado para 'err' para evitar qualquer conflito com o console
-            // Caso não consiga salvar o lead no banco
+        } catch (err) {
             console.error('Erro interno no leadService:', err.message || err);
             throw err;
         }
     },
     
-    // Função genérica para atualizar qualquer coluna do lead (nome, serviço, etapas, status)
-    async updateLead(phone, updateData) {
+    // CORRIGIDO: Adicionado companyId para garantir que só altera o lead daquela empresa específica
+    async updateLead(phone, companyId, updateData) {
         try {
             const cleanPhone = phone.replace('@c.us', '');
 
@@ -75,6 +79,7 @@ module.exports = {
                 .from('leads')
                 .update(updateData)
                 .eq('phone', cleanPhone)
+                .eq('company_id', companyId) // Proteção crucial: restringe a alteração ao escopo do parceiro
                 .select()
                 .single();
 
