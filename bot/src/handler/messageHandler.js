@@ -2,88 +2,83 @@
 const messages = require('../templates/messages');
 const leadService = require('../services/leadService');
 
-module.exports = async (client, msg) => {
+module.exports = async (client, msg, companyId) => {
+    // ⚠️ TRAVA 1: Se a mensagem foi enviada pelo próprio bot, ignora na hora!
+    if (msg.fromMe) return;
+
     const triggerText = 'Olá! Vim pelo site e gostaria de saber mais sobre!';
 
-    console.log(`✉️ Mensagem recebida de [${msg.from}]: "${msg.body}"`);
+    console.log(`✉️ [Empresa: ${companyId}] Mensagem de [${msg.from}]: "${msg.body}"`);
 
-    if (msg.body === triggerText) {
-        try {
+    try {
+        const chat = await msg.getChat();
+        
+        // Buscamos o lead passando o ID da mensagem recebida
+        const getLead = await leadService.getNewLead(msg.from, companyId);
 
-            // 1. Pegamos o objeto do chat diretamente da mensagem recebida
-            const chat = await msg.getChat();
-            // 2. Pegamos o lead do Supabase para verificar se já existe e verificar seu stado atual no bot
-            const getLead = await leadService.getNewLead(msg.from);
-
-
-            // Se o lead já existe e está sob cuidados humanos (em atendimento / concluído), o bot não interfere
-            if (getLead && (getLead.status === 'em atendimento' || getLead.current_step !== 'concluido')) {
-                return;
-            }
-
-            //Fluxo 1: Recebe a mensagem de gatilho
-            if (msg.body === triggerText) {
-                console.log('🎯 Gatilho detectado! Iniciando digitação...');
-
-                // Ativa o "Digitando..."
-                await chat.sendStateTyping();
-
-                // Salva o lead no Supabase
-                await leadService.saveNewLead(msg.from);
-
-                // Simula o tempo de digitação (2 segundos)
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // 2. FORMA ULTRA SEGURA: Envia a mensagem direto no objeto do chat
-                await chat.sendMessage(messages.welcomeMessage);
-
-                return;
-            }
-            
-            // Se o lead não existe, não faz nada (o fluxo de boas-vindas só é disparado pelo gatilho)
-            if (!getLead) {
-                return;
-            }
-
-            //Fluxo 2: Guarda o nome do cliente
-            if (getLead.current_step === 'aguardando_nome') {
-
-                // Atualiza o nome do lead no Supabase
-                await leadService.updateLead(msg.from, { 
-                    name: msg.body, 
-                    current_step: 'aguardando_servico' 
-                });
-
-                await new Promise(resolve => setTimeout(resolve, 2000));
-
-                // Envia a mensagem de solicitação de serviço diretamente no objeto do chat já com o nome do cliente
-                await chat.sendMessage(messages.askServiceMessage(msg.body));
-                return;
-            }
-
-            //Fluxo 3: Guarda o serviço do cliente
-            if (getLead.current_step === 'aguardando_servico') {
-                await chat.sendStateTyping();
-                const serviceSeach = msg.body;
-
-                // Atualiza o serviço do lead no Supabase e marca como concluído
-                await leadService.updateLead(msg.from, { 
-                    service: serviceSeach, 
-                    current_step: 'concluido', 
-                    status: 'em atendimento' 
-                });
-
-                await new Promise(resolve => setTimeout(resolve, 2000));
-
-                // Envia a mensagem de conclusão diretamente no objeto do chat
-                await chat.sendMessage(messages.endMessage);
-                return;
-            }
-
-            console.log('✅ Mensagem enviada com sucesso!');
-
-        } catch (error) {
-            console.error('❌ Erro ao processar fluxo de boas-vindas:', error);
+        // Se o lead já existe e está sob cuidados humanos (em atendimento), o bot não interfere
+        if (getLead && getLead.status === 'em atendimento') {
+            return;
         }
+
+        // Fluxo 1: Recebe a mensagem de gatilho (Início do Bot)
+        if (msg.body === triggerText) {
+            console.log(`🎯 Gatilho detectado para empresa [${companyId}]! Iniciando digitação...`);
+
+            await chat.sendStateTyping();
+
+            // Salva o novo lead atrelando-o à empresa atual
+            await leadService.saveNewLead(msg.from, companyId);
+
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            await chat.sendMessage(messages.welcomeMessage);
+            return;
+        }
+        
+        // Se a mensagem não é o gatilho E o lead ainda não existe no banco, ignora
+        if (!getLead) {
+            return;
+        }
+
+
+        // Fluxo 2: Guarda o nome do cliente
+        if (getLead.current_step === 'aguardando_nome') {
+            console.log(`👤 Nome recebido: "${msg.body}". Atualizando banco...`);
+            await chat.sendStateTyping();
+
+            await leadService.updateLead(msg.from, companyId, { 
+                name: msg.body, 
+                current_step: 'aguardando_servico' 
+            });
+
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            await chat.sendMessage(messages.askServiceMessage(msg.body));
+            return;
+        }
+
+
+        // Fluxo 3: Guarda o serviço do cliente
+        if (getLead.current_step === 'aguardando_servico') {
+            console.log(`💼 Serviço recebido: "${msg.body}". Finalizando automação...`);
+            await chat.sendStateTyping();
+            const serviceSearch = msg.body;
+
+            await leadService.updateLead(msg.from, companyId, { 
+                service: serviceSearch, 
+                current_step: 'concluido', 
+                status: 'em atendimento' 
+            });
+
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            await chat.sendMessage(messages.endMessage);
+            console.log(`✅ Fluxo concluído com sucesso para a empresa [${companyId}]!`);
+            return;
+        }
+
+    } catch (error) {
+        console.error(`❌ Erro ao processar fluxo de boas-vindas da empresa [${companyId}]:`, error);
     }
 };

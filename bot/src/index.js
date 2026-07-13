@@ -16,4 +16,4 @@ const io = new Server(server, {
 // client.initialize();
 initWhatsappDashboard(io);
 
-server.listen(3000, () => console.log('Servidor rodando na porta http://localhost:3000'));
+server.listen(3000, () => console.log('Servidor Multi-Tenant rodando na porta http://localhost:3000'));

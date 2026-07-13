@@ -1,74 +1,118 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
-const qrcodeTerminal = require('qrcode-terminal');
-const qrcodeImage = require('qrcode')
-
+const qrcodeImage = require('qrcode');
 const messageService = require('../handler/messageHandler.js');
 
-const client = new Client({
-    authStrategy: new LocalAuth({
-        clientId: "client-one" //Define um ID fixo para o cliente da sessão
-    }),                        // Mantém a sessão salva localmente
-    puppeteer: {
-        args: ['--no-sandbox'] // Evita problemas de permissão em servidores Linux/Docker
+// Objeto na memória do servidor para guardar as instâncias e estados de cada empresa
+const activeSessions = {};
+
+/**
+ * Inicializa ou recupera o bot do WhatsApp de uma empresa específica
+ */
+const getWhatsAppClient = (companyId, io) => {
+    // Se o cliente dessa empresa já existe, apenas retorna ele
+    if (activeSessions[companyId]) {
+        return activeSessions[companyId].client;
     }
-});
 
-// Variáveis de controle para sincronizar o Dashboard que conectar "atrasado"
-let ultimoQrCode = '';
-let statusAtual = 'connecting';
+    console.log(`🤖 Inicializando bot para a empresa: ${companyId}`);
 
+    const client = new Client({
+        authStrategy: new LocalAuth({
+            clientId: `company-${companyId}` // Guarda a sessão separada para cada parceiro
+        }),                        
+        puppeteer: {
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        }
+    });
+
+    // Cria a estrutura de estado na memória para esta empresa
+    activeSessions[companyId] = {
+        client,
+        statusAtual: 'connecting',
+        ultimoQrCode: ''
+    };
+
+    // --- EVENTOS DO WHATSAPP DO PARCEIRO ---
+    
+    client.on('qr', (qr) => {
+        activeSessions[companyId].statusAtual = 'scan_me';
+        
+        qrcodeImage.toDataURL(qr, (err, url) => {
+            if (!err) {
+                activeSessions[companyId].ultimoQrCode = url;
+                
+                // Envia APENAS para a sala (room) daquela empresa no Socket
+                io.to(`company_room_${companyId}`).emit('status', 'scan_me');
+                io.to(`company_room_${companyId}`).emit('qr_code', url);
+            }
+        });
+    });
+
+    client.on('ready', () => {
+        console.log(`✅ WhatsApp da empresa ${companyId} conectado com sucesso!`);
+        activeSessions[companyId].statusAtual = 'ready';
+        activeSessions[companyId].ultimoQrCode = '';
+        io.to(`company_room_${companyId}`).emit('status', 'ready');
+    });
+
+    client.on('disconnected', () => {
+        console.log(`❌ WhatsApp da empresa ${companyId} desconectado.`);
+        activeSessions[companyId].statusAtual = 'disconnected';
+        activeSessions[companyId].ultimoQrCode = '';
+        io.to(`company_room_${companyId}`).emit('status', 'disconnected');
+    });
+
+    client.on('message_create', async (msg) => {
+        try {
+            // 👈 Repassa o companyId para o seu Handler saber qual empresa salvando o lead
+            await messageService(client, msg, companyId);
+        } catch (error) {
+            console.error(`Erro no messageService da empresa ${companyId}:`, error);
+        }
+    });
+
+    client.initialize();
+    return client;
+};
+
+/**
+ * Configuração principal do Socket.io para gerenciar as conexões do Dashboard
+ */
 const initWhatsappDashboard = (io) => {
-
     io.on('connection', (socket) => {
-        console.log('Dashboard conectado via Socket:', socket.id);
+        // 👈 O frontend deve enviar qual empresa está conectando via query string
+        const companyId = socket.handshake.query.companyId;
 
-        //Faz a conexão com o front e gera o QrCode
-        socket.emit('status', statusAtual);
-        if (statusAtual === 'scan_me' && ultimoQrCode) {
-            socket.emit('qr_code', ultimoQrCode);
+        if (!companyId) {
+            console.log('⚠️ Conexão socket rejeitada: companyId não informado.');
+            return socket.disconnect();
         }
 
-        //Verifica se já está conectado no whatsapp e pula a fase de gerar o qrcode
-        client.getState().then(state => {
+        // Coloca o canal desse usuário em uma "sala" exclusiva da sua empresa
+        socket.join(`company_room_${companyId}`);
+        console.log(`🎯 Dashboard da empresa [${companyId}] conectado via Socket:`, socket.id);
+
+        // Garante que a instância do bot dessa empresa exista
+        getWhatsAppClient(companyId, io);
+
+        // Puxa o estado atualizado da memória para esta empresa específica
+        const session = activeSessions[companyId];
+        
+        socket.emit('status', session.statusAtual);
+        if (session.statusAtual === 'scan_me' && session.ultimoQrCode) {
+            socket.emit('qr_code', session.ultimoQrCode);
+        }
+
+        // Checagem em tempo real no Puppeteer da empresa
+        session.client.getState().then(state => {
             if (state === 'CONNECTED') {
-                statusAtual = 'ready';
+                session.statusAtual = 'ready';
                 socket.emit('status', 'ready');
-            };
-        }).catch(() =>
-            socket.emit('status', statusAtual)
-        );
+            }
+        }).catch(() => {
+            socket.emit('status', session.statusAtual);
+        });
     });
 };
 
-// Evento para gerar o QR Code no terminal
-client.on('ready', () => {
-    qrcode.generate(qr, { small: true });
-    console.log('Conctado ao WhatsApp.');
-    io.emit('status', 'connected');
-});
-
-// Evento caso o whatsaoo esteja desconectado
-client.on('disconnected', () => {
-    console.log('WhatsApp desconectado');
-    io.emit('status', 'disconnected');
-});
-
-
-// Mudei para 'message_create' para capturar meus testes próprios também
-client.on('message_create', async msg => {
-
-    try {
-        // Passa o cliente e a mensagem recebida para o nosso Handler gerenciar
-        await messageService(client, msg);
-    } catch (error) {
-        console.error('Erro dentro do messageService:', error);
-    }
-});
-
-
-// // Evento de confirmação de conexão
-// client.on('ready', () => {
-//     console.log('Chatbot conectado com sucesso e pronto para operar!');
-// });
-
-module.exports = { client, initWhatsappDashboard };
+module.exports = { initWhatsappDashboard, getWhatsAppClient, activeSessions };

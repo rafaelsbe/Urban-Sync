@@ -45,6 +45,8 @@ interface Lead {
   created_at: string;
 }
 
+const currentCompanyId = "id_da_empresa_logada";
+
 export default function WhatsAppDashPage() {
   const [status, setStatus] = useState<statusBot>('connecting')
   const [qrCode, setQrCodeUrl] = useState('')
@@ -55,7 +57,11 @@ export default function WhatsAppDashPage() {
 
   // 1. Conexão em tempo real com o Bot do WhatsApp via WebSockets
   useEffect(() => {
-    const socket: Socket = io(backEnd);
+    const socket: Socket = io(backEnd, {
+      query: {
+        companyId: currentCompanyId
+      }
+    });
 
     socket.on('status', (botStatus: statusBot) => {
       setStatus(botStatus);
@@ -68,7 +74,7 @@ export default function WhatsAppDashPage() {
     return () => {
       socket.disconnect();
     };
-  }, []); // CORRIGIDO: Adicionado o array de dependências vazio para evitar conexões infinitas
+  }, [currentCompanyId]); // CORRIGIDO: Adicionado o array de dependências vazio para evitar conexões infinitas
 
   // 2. Busca inicial de dados + Realtime Supabase
   useEffect(() => {
@@ -77,6 +83,7 @@ export default function WhatsAppDashPage() {
         const { data, error } = await supabase
           .from("leads")
           .select("*")
+          .eq("company_id", currentCompanyId) //Traz apenas leads dessa empresa
           .order("created_at", { ascending: false })
 
         if (!error && data) setLeads(data as Lead[])
@@ -90,10 +97,15 @@ export default function WhatsAppDashPage() {
     fetchLeads()
 
     const channel = supabase
-      .channel("realtime-whatsapp-dash")
+      .channel(`realtime-company-${currentCompanyId}`)
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "leads" },
+        { 
+          event: "*", 
+          schema: "public", 
+          table: "leads",
+          filter: `company_id=eq.${currentCompanyId}`
+        },
         (payload) => {
           if (payload.eventType === "INSERT") {
             setLeads((prev) => [payload.new as Lead, ...prev])
@@ -111,7 +123,7 @@ export default function WhatsAppDashPage() {
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [])
+  }, [currentCompanyId]) // CORRIGIDO: Adicionado o array de dependências vazio para evitar múltiplas assinaturas
 
   // 3. Filtro dinâmico da tabela
   const filteredLeads = leads.filter((lead) => {
