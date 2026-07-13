@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
 
         if (authError) {
             return NextResponse.json(
-                { error: authError.message },
+                { error: "Erro ao criar usuário" },
                 { status: 400 }
             );
         }

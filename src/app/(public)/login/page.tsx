@@ -83,9 +83,11 @@ export default function LoginChoicePage() {
                             <p className="text-sm text-white/70">
                                 Ainda não conhece a UrbanSync?
                             </p>
-                            <Button className="mt-3 w-full bg-accent font-bold text-accent-foreground hover:bg-accent/80">
-                                Conheça nosso serviço
-                            </Button>
+                            <Link href='/#sobre'>
+                                <Button className="mt-3 w-full bg-accent font-bold text-accent-foreground hover:bg-accent/80">
+                                    Conheça nosso serviço
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </section>
@@ -117,9 +119,9 @@ export default function LoginChoicePage() {
                             para empresas e clientes.
                         </p>
 
-                        <Button className="mt-10 h-14 rounded-xl bg-emerald-400 px-8 text-lg font-bold text-slate-950 shadow-lg hover:bg-emerald-500">
+                        {/* <Button className="mt-10 h-14 rounded-xl bg-emerald-400 px-8 text-lg font-bold text-slate-950 shadow-lg hover:bg-emerald-500">
                             Começar agora
-                        </Button>
+                        </Button> */}
                     </div>
                 </section>
             </div>

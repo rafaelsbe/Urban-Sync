@@ -159,10 +159,10 @@ export default function EmpresaLoginPage() {
                             </h2>
                         </div>
 
-                        <Button
+                        {/* <Button
                             className="mt-10 w-[520px] rounded-xl bg-emerald-400 p-7 text-xl font-medium text-slate-950 shadow-lg hover:bg-emerald-500">
                             Garanta seu imóvel com condições exclusivas!
-                        </Button>
+                        </Button> */}
                     </div>
                 </section>
             </div >
